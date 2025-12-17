@@ -1,0 +1,4 @@
+repository "browser-bounce/movement-test@10170499954769@cloud"
+  path "/"
+    br "/main"
+    co "/main"
