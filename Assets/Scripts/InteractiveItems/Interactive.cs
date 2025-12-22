@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public abstract class Interactive : MonoBehaviour
 {
-    public virtual void InteractItem()
+    public event Action InteractEvent;
+    public virtual void InteractItem() 
     {
-        Debug.Log("You interacted with an item");
+        InteractEvent?.Invoke();
     }
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class InteractiveObject : Interactive
+public  abstract class InteractiveObject : Interactive
 {
-    public override void InteractItem()
+    public virtual void Subscribe(Interactive interactive) 
     {
-        Debug.Log("Вы потрогали стационарный предмет");
+        interactive.InteractEvent += OnInteract;
     }
+    public abstract void OnInteract();
 }

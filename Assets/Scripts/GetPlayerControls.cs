@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class GetPlayerControls : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GetPlayerControls : MonoBehaviour
     private P_Movement P_Movement;
     [SerializeField]
     private P_Interaction P_Interaction;
+    [SerializeField]
+    private P_Inventory P_Inventory;
     
 
     private void Start()
@@ -45,6 +48,20 @@ public class GetPlayerControls : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext ctx) 
     {
         if (ctx.started) { P_Interaction.Interact(); }
+    }
+
+    public void OnInventory(InputAction.CallbackContext ctx) {
+        if (ctx.canceled){
+            var key = ctx.control as KeyControl;
+            int keyDigit = key.keyCode switch {
+                Key.Digit1 => 1,
+                Key.Digit2 => 2,
+                Key.Digit3 => 3,
+                Key.Digit4 => 4,
+            };
+            P_Inventory.SetInventoryInput(keyDigit);
+        }
+    
     }
 
 }

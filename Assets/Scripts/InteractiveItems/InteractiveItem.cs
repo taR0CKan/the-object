@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InteractiveItem : Interactive
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] ItemScriptable itemData;
     public override void InteractItem()
     {
         Debug.Log("Âû ןמענמדאכט ןמהבטנאולûי ןנוהלוע");

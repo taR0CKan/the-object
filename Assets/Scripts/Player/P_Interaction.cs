@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class P_Interaction : MonoBehaviour
 {
+    [SerializeField] P_Inventory inventory;
     [SerializeField]
     private Camera cam;
     private const float playerReach = 3f;
@@ -19,6 +20,11 @@ public class P_Interaction : MonoBehaviour
             if (hit.collider.CompareTag("Interactive"))
             {
                 hit.collider.GetComponent<Interactive>().InteractItem();
+            }
+            else if (hit.collider.CompareTag("Item"))
+            {
+                inventory.PickItem(hit.collider.gameObject.GetComponent<InteractiveItem>());
+                Destroy(hit.collider.gameObject);
             }
         }
     }
