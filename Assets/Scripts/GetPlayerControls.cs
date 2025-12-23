@@ -61,7 +61,13 @@ public class GetPlayerControls : MonoBehaviour
             };
             P_Inventory.SetInventoryInput(keyDigit);
         }
-    
+    }
+    public void OnDropItem(InputAction.CallbackContext ctx)
+    {
+        if (ctx.canceled)
+        {
+            P_Inventory.SetDropInput();
+        }
     }
 
 }
