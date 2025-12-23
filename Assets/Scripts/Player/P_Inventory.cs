@@ -20,6 +20,10 @@ public class P_Inventory : MonoBehaviour
             inventory[activeSlot] = item.itemData;
             Destroy(item.gameObject);
             inHandItems[activeSlot] = Instantiate(inventory[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation, activeObjectPosition);
+            if (inHandItems[activeSlot].TryGetComponent<Rigidbody>(out Rigidbody body))
+            {
+                Destroy(inHandItems[activeSlot].GetComponent<Rigidbody>());
+            }
             activeItem = inHandItems[activeSlot];
         }
     }
@@ -37,7 +41,8 @@ public class P_Inventory : MonoBehaviour
     {
         if (inventory[activeSlot] != null)
         {
-            Instantiate(inventory[activeSlot].onDropItem, activeObjectPosition.position, activeObjectPosition.rotation);
+            GameObject dropItem = Instantiate(inventory[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
+            dropItem.AddComponent<Rigidbody>();
             DestroyCurrentItem();
         }
     }
