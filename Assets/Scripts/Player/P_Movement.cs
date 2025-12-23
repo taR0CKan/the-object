@@ -6,7 +6,7 @@ public class P_Movement : MonoBehaviour
 {
     [Header("Скорости")]
     [SerializeField] private int moveSpeed;
-    [SerializeField] private int crouchSpeed;
+    [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private float crouchTransitionSpeed;
     private int currentSpeed;
 
@@ -81,7 +81,7 @@ public class P_Movement : MonoBehaviour
     private void Crouch(bool isCrouch)
     {
         targetHeight = isCrouch ? crouchHeight : initialHeight;
-
+        speedMultiplier = isCrouch ? 0.5f : 1;
         if (!isCrouch && !Mathf.Approximately(initialHeight, currentHeight))
         {
             if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, initialHeight - crouchHeight))
@@ -118,7 +118,7 @@ public class P_Movement : MonoBehaviour
 
     private void Movement(Vector3 direction)
     {
-        con.Move(move * currentSpeed * Time.deltaTime);
+        con.Move(move * currentSpeed * speedMultiplier * Time.deltaTime);
     }
 
     private float Gravity()
@@ -135,7 +135,6 @@ public class P_Movement : MonoBehaviour
     {
         this.isCrouch = isCrouch;
     }
-
     public void SetRotationInput(Vector2 rotation)
     {
         rotationInput = rotation;

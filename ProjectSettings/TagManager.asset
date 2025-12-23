@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactive
   - Item
+  - Button
   layers:
   - Default
   - TransparentFX

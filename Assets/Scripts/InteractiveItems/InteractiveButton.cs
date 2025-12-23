@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InteractiveButton : Interactive
 {
-    [SerializeField]
-    private List<InteractiveObject> activatedObjects;
+    [SerializeField] private List<InteractiveObject> activatedObjects;
+    [SerializeField] public ItemScriptable requiredItem;
 
     private void Awake()
     {
@@ -15,6 +15,11 @@ public class InteractiveButton : Interactive
         }
     }
 
+    public bool isCorrectItem(ItemScriptable appliedItem)
+    {
+        return appliedItem == requiredItem;
+    }
+   
 
 
 }

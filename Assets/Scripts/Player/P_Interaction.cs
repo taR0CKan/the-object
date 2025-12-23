@@ -26,6 +26,14 @@ public class P_Interaction : MonoBehaviour
                 inventory.PickItem(hit.collider.gameObject.GetComponent<InteractiveItem>());
                 Destroy(hit.collider.gameObject);
             }
+            else if (hit.collider.CompareTag("Button"))
+            {
+                if (hit.collider.GetComponent<InteractiveButton>().isCorrectItem(inventory.GetActiveItem()))
+                {
+                    hit.collider.GetComponent<InteractiveButton>().InteractItem();
+                }
+            }
+
         }
     }
 

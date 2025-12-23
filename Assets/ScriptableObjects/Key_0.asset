@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dc2adf326171e14482fcaecf622fd0c, type: 3}
-  m_Name: itemData
+  m_Name: Key_0
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemId: 0
   inventorySprite: {fileID: 0}
   onDropItem: {fileID: 0}
-  inHandItem: {fileID: 0}
+  inHandItem: {fileID: 1064358711925972214, guid: 26b6666f8b23dfc40a96ecf50e79c673, type: 3}
