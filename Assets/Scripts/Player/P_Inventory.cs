@@ -4,12 +4,8 @@ using UnityEngine.UI;
 
 public class P_Inventory : MonoBehaviour
 {
-   
-    [SerializeField] private ItemScriptable[] inventory = new ItemScriptable[4];
-    [SerializeField] private GameObject[] inventoryUI = new GameObject[4];
     [SerializeField] private Transform activeObjectPosition;
-
-    private GameObject[] inHandItems = new GameObject[4];
+    [SerializeField] private InventorySlot[] slots = new InventorySlot[4];
     private GameObject activeItem;
     
    
@@ -18,36 +14,36 @@ public class P_Inventory : MonoBehaviour
 
     public void PickItem(InteractiveItem item)
     {
-        if (inventory[activeSlot] == null)
+        if (slots[activeSlot].itemData == null)
         {
-            inventory[activeSlot] = item.itemData;
+            slots[activeSlot].itemData = item.itemData;
             Destroy(item.gameObject);
-            inHandItems[activeSlot] = Instantiate(inventory[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation, activeObjectPosition);
-            if (inHandItems[activeSlot].TryGetComponent<Rigidbody>(out Rigidbody body))
+            slots[activeSlot].inHandItem = Instantiate(slots[activeSlot].itemData.inHandItem, activeObjectPosition.position, activeObjectPosition.rotation, activeObjectPosition);
+            if (slots[activeSlot].inHandItem.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
-                Destroy(inHandItems[activeSlot].GetComponent<Rigidbody>());
+                Destroy(slots[activeSlot].inHandItem.GetComponent<Rigidbody>());
             }
-            activeItem = inHandItems[activeSlot];
-            inventoryUI[activeSlot].gameObject.SetActive(true);
-            inventoryUI[activeSlot].GetComponent<Image>().sprite = inventory[activeSlot].inventorySprite; 
+            activeItem = slots[activeSlot].inHandItem;
+            slots[activeSlot].gameObject.SetActive(true);
+            slots[activeSlot].GetComponent<Image>().sprite = slots[activeSlot].itemData.inventorySprite; 
         }
     }
 
     public ItemScriptable GetActiveItem()
     {
-        if (inventory[activeSlot] != null)
+        if (slots[activeSlot].itemData != null)
         {
-            return inventory[activeSlot];
+            return slots[activeSlot].itemData;
         }
         else return null;
     }
 
     private void DropCurrentItem()
     {
-        if (inventory[activeSlot] != null)
+        if (slots[activeSlot].itemData != null)
         {
             
-            GameObject dropItem = Instantiate(inventory[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
+            GameObject dropItem = Instantiate(slots[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
             dropItem.AddComponent<Rigidbody>();
             DestroyCurrentItem();
         }
@@ -55,9 +51,9 @@ public class P_Inventory : MonoBehaviour
 
     public void DestroyCurrentItem()
     {
-        inventory[activeSlot] = null;
-        inHandItems[activeSlot] = null;
-        inventoryUI[activeSlot].gameObject.SetActive(false);
+        slots[activeSlot].itemData = null;
+        slots[activeSlot].inHandItem = null;
+        slots[activeSlot].gameObject.SetActive(false);
         Destroy(activeItem);
     }
     
@@ -65,15 +61,15 @@ public class P_Inventory : MonoBehaviour
 
     public void SetInventoryInput(int inventoryCell)
     {
-        if (inHandItems[activeSlot] != null)
+        if (slots[activeSlot].inHandItem != null)
         {
-            inHandItems[activeSlot].SetActive(false);
+            slots[activeSlot].inHandItem.SetActive(false);
         }
         activeSlot = inventoryCell - 1;
         
-        if (inHandItems[activeSlot] != null) {
-            inHandItems[activeSlot].SetActive(true);
-            activeItem = inHandItems[activeSlot];
+        if (slots[activeSlot].inHandItem != null) {
+            slots[activeSlot].inHandItem.SetActive(true);
+            activeItem = slots[activeSlot].inHandItem;
         }
     }
 
