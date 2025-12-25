@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Key_1
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemId: 1
-  inventorySprite: {fileID: 0}
-  onDropItem: {fileID: 1064358711925972214, guid: d26f803d65c0fcd4c916ebda73bb2f4c, type: 3}
-  inHandItem: {fileID: 1064358711925972214, guid: 26b6666f8b23dfc40a96ecf50e79c673, type: 3}
+  inventorySprite: {fileID: 21300000, guid: 1db6c483e652b2746a09214fc1bc468c, type: 3}
+  inHandItem: {fileID: 5345377018862894641, guid: 7f0c45cb1ba0c474faca83d29db0c26d, type: 3}

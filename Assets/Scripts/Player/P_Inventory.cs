@@ -1,11 +1,14 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class P_Inventory : MonoBehaviour
 {
    
     [SerializeField] private ItemScriptable[] inventory = new ItemScriptable[4];
+    [SerializeField] private GameObject[] inventoryUI = new GameObject[4];
     [SerializeField] private Transform activeObjectPosition;
+
     private GameObject[] inHandItems = new GameObject[4];
     private GameObject activeItem;
     
@@ -25,6 +28,8 @@ public class P_Inventory : MonoBehaviour
                 Destroy(inHandItems[activeSlot].GetComponent<Rigidbody>());
             }
             activeItem = inHandItems[activeSlot];
+            inventoryUI[activeSlot].gameObject.SetActive(true);
+            inventoryUI[activeSlot].GetComponent<Image>().sprite = inventory[activeSlot].inventorySprite; 
         }
     }
 
@@ -41,6 +46,7 @@ public class P_Inventory : MonoBehaviour
     {
         if (inventory[activeSlot] != null)
         {
+            
             GameObject dropItem = Instantiate(inventory[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
             dropItem.AddComponent<Rigidbody>();
             DestroyCurrentItem();
@@ -51,6 +57,7 @@ public class P_Inventory : MonoBehaviour
     {
         inventory[activeSlot] = null;
         inHandItems[activeSlot] = null;
+        inventoryUI[activeSlot].gameObject.SetActive(false);
         Destroy(activeItem);
     }
     
