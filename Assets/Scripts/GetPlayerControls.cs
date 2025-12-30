@@ -42,7 +42,6 @@ public class GetPlayerControls : MonoBehaviour
         {
             P_Movement.SetCrouchInput(false);
         }
-
     }
 
     public void OnInteract(InputAction.CallbackContext ctx) 

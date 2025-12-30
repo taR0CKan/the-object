@@ -695,6 +695,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 233133032433488752, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: actionMapManager
+      value: 
+      objectReference: {fileID: 850496553}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: eb3e34d6-6e1a-42df-8f45-bce4ab922302
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: 'Screen/Interact[/Keyboard/e]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 850496557}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GetPlayerControls, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 242376191257607514, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_Name
       value: Player
@@ -721,7 +765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.39
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -762,7 +806,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 850496553}
   m_SourcePrefab: {fileID: 100100000, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
 --- !u!1 &185702770
 GameObject:
@@ -2067,9 +2114,10 @@ GameObject:
   - component: {fileID: 553846144}
   - component: {fileID: 553846143}
   - component: {fileID: 553846142}
+  - component: {fileID: 553846145}
   m_Layer: 0
   m_Name: Document
-  m_TagString: Untagged
+  m_TagString: Screen
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2166,6 +2214,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553846140}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &553846145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553846140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de036d69c6af394badac265c460064e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreen
 --- !u!1001 &557423177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3125,6 +3185,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
+--- !u!1 &850496552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+  m_PrefabInstance: {fileID: 165812352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &850496553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850496552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79ed206ae488a6459e88fb8f462384c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionMapManager
+--- !u!114 &850496557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7140401778210726223, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+  m_PrefabInstance: {fileID: 165812352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850496552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba76c5d6439f0d04a974201923bde613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetPlayerControls
 --- !u!1 &867742166
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,9 +6231,10 @@ GameObject:
   - component: {fileID: 1911868282}
   - component: {fileID: 1911868281}
   - component: {fileID: 1911868280}
+  - component: {fileID: 1911868283}
   m_Layer: 0
   m_Name: PC
-  m_TagString: Untagged
+  m_TagString: Screen
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6242,6 +6331,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911868278}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1911868283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911868278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de036d69c6af394badac265c460064e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreen
 --- !u!1 &1912826141
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,8 +6371,8 @@ Transform:
   m_GameObject: {fileID: 1912826141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.1523, y: -0.448, z: 0.09990001}
-  m_LocalScale: {x: 1.9671807, y: -0.08404472, z: 3.9645789}
+  m_LocalPosition: {x: 10.1523, y: -0.448, z: 0.0273}
+  m_LocalScale: {x: 2.1123586, y: 0.1, z: 3.9645789}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1583568227}
