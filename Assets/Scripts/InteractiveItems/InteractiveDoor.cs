@@ -14,21 +14,26 @@ public class InteractiveDoor : InteractiveObject
 
         if (!isLocked)
         {
-            rotationAngle = isOpen ? 135f : -135f;
-            gameObject.transform.parent.rotation = Quaternion.Slerp(gameObject.transform.parent.rotation, Quaternion.Euler(0,rotationAngle,0), rotationSpeed);
-            isOpen = !isOpen;
+            StopCoroutine(SpinDoor());
+            StartCoroutine(SpinDoor());
         }
    }
 
    public override void OnInteract()
    {
         if (isLocked) { isLocked = false; }
-       InteractItem();
+        InteractItem();
    }
    IEnumerator SpinDoor()
    {
-        float elapsed = 0f;
-
-        yield return null;
+        float time = 0;
+        rotationAngle = isOpen ? 45f : 180f;
+        while (time < 1)
+        {
+            transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, Quaternion.Euler(0, rotationAngle, 0), time);
+            yield return null;
+            time += Time.deltaTime * rotationSpeed;
+        }
+        isOpen = !isOpen;
    }
 }

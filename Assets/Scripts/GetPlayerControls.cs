@@ -20,8 +20,6 @@ public class GetPlayerControls : MonoBehaviour
         Controls = GetComponent<PlayerInput>(); //Управление картами инпутов
     }
 
-
-
     public void OnMove(InputAction.CallbackContext ctx)
     {
        P_Movement.SetMoveInput(ctx.ReadValue<Vector3>());

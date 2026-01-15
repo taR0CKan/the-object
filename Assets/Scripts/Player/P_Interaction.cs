@@ -38,7 +38,6 @@ public class P_Interaction : MonoBehaviour
                     inventory.DestroyCurrentItem();
                 }
             }
-
         }
     }
 
