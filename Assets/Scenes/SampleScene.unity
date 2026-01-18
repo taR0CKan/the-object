@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &135919208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+  m_PrefabInstance: {fileID: 3830992050578011364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7953e8576b26c8c42b8f4634050ba50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P_Inventory
 --- !u!1 &289315949
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +750,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1509099015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029523345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 92402558037001499, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
+  m_PrefabInstance: {fileID: 1359759473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f73020625553b46a36753d96039d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractiveDoor
 --- !u!114 &1272213714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5291804185208183297, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
@@ -758,6 +780,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92402558037001499, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
+      propertyPath: isLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7869072606033007486, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
       propertyPath: m_Name
       value: DoorBase
@@ -1322,6 +1348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de036d69c6af394badac265c460064e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreen
+  screenCanvas: {fileID: 0}
+  actionMapManager: {fileID: 0}
 --- !u!65 &1963648941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1519,6 +1547,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930972302982177113, guid: 7f0c45cb1ba0c474faca83d29db0c26d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 135919208}
     - target: {fileID: 5345377018862894641, guid: 7f0c45cb1ba0c474faca83d29db0c26d, type: 3}
       propertyPath: m_Name
       value: ItemPrototype (1)
@@ -1640,6 +1672,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5188356677070586782, guid: 26b6666f8b23dfc40a96ecf50e79c673, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 135919208}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1658,9 +1694,13 @@ PrefabInstance:
       value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 135919208}
+    - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
       propertyPath: 'activatedObjects.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1029523345}
     - target: {fileID: 7732077203470531544, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.426
@@ -1717,6 +1757,10 @@ PrefabInstance:
     - target: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042782233925407842, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: sensitivity
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[0]'

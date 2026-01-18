@@ -9,9 +9,15 @@ public class InteractiveDoor : InteractiveObject
     private float rotationSpeed;
     [SerializeField]
     private bool isLocked;
+
+    public void Awake()
+    {
+        InteractiveButton.OnButtonPressed += OnInteract;
+    }
+
    public override void InteractItem()
    {
-
+        Debug.Log(this.name);
         if (!isLocked)
         {
             StopCoroutine(SpinDoor());

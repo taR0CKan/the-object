@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9019847368615581051}
   - component: {fileID: 8424995041621912586}
   - component: {fileID: 5188356677070586782}
+  - component: {fileID: 1489672923367632763}
   m_Layer: 0
   m_Name: ItemPrototype
   m_TagString: Item
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064358711925972214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3691, y: 1.4298, z: 0.8938}
+  m_LocalRotation: {x: 0.041120023, y: -0.94962764, z: 0.14107566, w: 0.2767927}
+  m_LocalPosition: {x: 17.52735, y: 1.2415011, z: 0.5339924}
   m_LocalScale: {x: 0.2672321, y: 0.2672321, z: 0.2672321}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,3 +126,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractiveItem
   itemData: {fileID: 11400000, guid: c594e9261659d5741b708364b2252073, type: 2}
+  inventory: {fileID: 0}
+--- !u!54 &1489672923367632763
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064358711925972214}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
