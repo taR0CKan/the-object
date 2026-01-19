@@ -1432,7 +1432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &197024746
 Transform:
   m_ObjectHideFlags: 0
@@ -1462,6 +1462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: 564d0f3e340e46e46853071ed2cfebb6, type: 2}
   audioSource: {fileID: 1540056268}
+  delay: 0
 --- !u!65 &197024748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7307,6 +7308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnomalyTrigger
   anomaly: {fileID: 582929163}
+  replic: {fileID: 11400000, guid: e138b4055a182da4985cf9091493be6e, type: 2}
+  audioSource: {fileID: 2064048082}
+  delay: 41
 --- !u!65 &1290982257
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7616,13 +7620,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337041435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6b0cb3a768b2274094cc26ceb60696b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInspectorManager
-  inspectAnchor: {fileID: 0}
-  actionMapManager: {fileID: 0}
+  inspectAnchor: {fileID: 823615823}
+  actionMapManager: {fileID: 850496553}
   rotationSpeed: 5
   vfx: {fileID: 0}
 --- !u!4 &1337041437
@@ -8161,6 +8165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: 12745e6abf85d9945902aaf9574bba09, type: 2}
   audioSource: {fileID: 596320600}
+  delay: 0
 --- !u!65 &1511217394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8715,6 +8720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: 165ca831c0e6ae646a0fb8f26b0d17e8, type: 2}
   audioSource: {fileID: 2055774152}
+  delay: 0
 --- !u!65 &1656022409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8894,6 +8900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: e55f1215a884c314e9c7dda335119c0e, type: 2}
   audioSource: {fileID: 596320600}
+  delay: 0
 --- !u!65 &1716942968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9613,15 +9620,31 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
+      propertyPath: replic
+      value: 
+      objectReference: {fileID: 11400000, guid: 564d0f3e340e46e46853071ed2cfebb6, type: 2}
+    - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 850496558}
+    - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1540056268}
     - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
       propertyPath: requiredItem
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
+      propertyPath: activatedObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
       propertyPath: 'activatedObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 136188735}
+    - target: {fileID: 5757172698356477078, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
+      propertyPath: 'activatedObjects.Array.data[1]'
       value: 
       objectReference: {fileID: 136188735}
     - target: {fileID: 7732077203470531544, guid: 52cac36d50b13714e8e5697c5576fc7e, type: 3}
@@ -9894,7 +9917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1841908073
 Transform:
   m_ObjectHideFlags: 0
@@ -9924,6 +9947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: e138b4055a182da4985cf9091493be6e, type: 2}
   audioSource: {fileID: 2064048082}
+  delay: 41
 --- !u!65 &1841908075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9992,6 +10016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: cb5051ed06b78af4d80a8c82f104dc53, type: 2}
   audioSource: {fileID: 1770355440}
+  delay: 0
 --- !u!65 &1869432622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10060,6 +10085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: 0e39fdb077dfcbd4db9e4d9131a47a4b, type: 2}
   audioSource: {fileID: 1540056268}
+  delay: 0
 --- !u!65 &1872412984
 BoxCollider:
   m_ObjectHideFlags: 0

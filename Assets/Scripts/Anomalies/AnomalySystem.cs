@@ -35,7 +35,7 @@ public class AnomalySystem : MonoBehaviour
     {
         if (!anomaly.CanBeActivated()) return;
 
-        anomaly.Activate();
+        //anomaly.Activate();
     }
 
     public void OnAnomalyResolved(AnomalyBase anomaly)

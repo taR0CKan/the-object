@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public abstract class AnomalyBase : MonoBehaviour
 {
@@ -42,12 +43,12 @@ public abstract class AnomalyBase : MonoBehaviour
         return cooldownTimer <= 0 && !IsActive;
     }
 
-    public virtual void Activate()
+    public virtual void Activate(ReplicSource audioSource, ScriptableReplic replic)
     {
         IsActive = true;
         timer = ResolveTimeLimit;
         gameObject.SetActive(true);
-        OnActivated();
+        OnActivated(audioSource, replic);
     }
 
     public virtual void Resolve()
@@ -68,7 +69,7 @@ public abstract class AnomalyBase : MonoBehaviour
         // можно усилить дестабилизацию или вызвать вторичную аномалию
     }
 
-    protected abstract void OnActivated();
+    protected abstract void OnActivated(ReplicSource audioSource, ScriptableReplic replic);
     protected abstract void OnResolved();
     protected abstract void OnFailed();
 

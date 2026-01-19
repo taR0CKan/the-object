@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SpeakerNoiseAnomaly : AnomalyBase
 {
@@ -6,6 +7,9 @@ public class SpeakerNoiseAnomaly : AnomalyBase
     [SerializeField] private Light currentLight;
 
     [SerializeField] private float lightIntensity;
+
+    private ReplicSource _audioSource;
+    private ScriptableReplic _replic;
     private void OnEnable()
     {
         P_Inventory.OnItemPicked += TryResolve;
@@ -15,11 +19,14 @@ public class SpeakerNoiseAnomaly : AnomalyBase
     {
         P_Inventory.OnItemPicked -= TryResolve;
     }
-    protected override void OnActivated()
+    protected override void OnActivated(ReplicSource audioSource, ScriptableReplic replic)
     {
+        _audioSource = audioSource;
+        _replic = replic;
         Debug.Log("Аномалия: шум из динамика");
         currentLight.intensity = lightIntensity;
         currentLight.color = Color.red;
+        ReplicSystemManager.Instance.Play(replic, audioSource);
         // включить звук, визуал, эффекты
     }
 
@@ -27,6 +34,7 @@ public class SpeakerNoiseAnomaly : AnomalyBase
     {
         Debug.Log("Шум устранён");
         currentLight.intensity = 0;
+        _audioSource.Stop();
         // выключить звук
     }
 
@@ -34,6 +42,7 @@ public class SpeakerNoiseAnomaly : AnomalyBase
     {
         Debug.Log("Провал");
         currentLight.intensity = 0;
+        _audioSource.Stop();
     }
 
     public void TryResolve(InteractiveItem item)

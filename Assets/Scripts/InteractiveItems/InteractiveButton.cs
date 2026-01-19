@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class InteractiveButton : Interactive
 {
@@ -9,6 +10,9 @@ public class InteractiveButton : Interactive
     [SerializeField] public ItemScriptable requiredItem;
     public P_Inventory inventory;
     public static event Action OnButtonPressed;
+
+    [SerializeField] private ScriptableReplic replic;
+    [SerializeField] private ReplicSource audioSource;
 
     private void Awake()
     {
@@ -31,6 +35,8 @@ public class InteractiveButton : Interactive
             {
                 activatedObject.OnInteract();
             }
+
+            ReplicSystemManager.Instance.Play(replic, audioSource);
             //InteractEvent?.Invoke();
         }
         else return;
