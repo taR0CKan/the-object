@@ -37,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 483408659147874880}
   - {fileID: 4191368725475244924}
-  - {fileID: 7296741413710445423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4307896812150235722
@@ -186,6 +185,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4e271489-ae70-42fc-b1e7-e1b25cbe7023
     m_ActionName: 'Movement/DropItem[/Keyboard/g]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb3e34d6-6e1a-42df-8f45-bce4ab922302
+    m_ActionName: 'Screen/Interact[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fe44410-34d5-42cb-add2-46efc76f4eb7
+    m_ActionName: 'Inspect/Rotate[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09b6a1b0-ceca-400c-874d-ed4b645e05f6
+    m_ActionName: 'Inspect/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Mouse Keyboard
   m_DefaultActionMap: Movement
@@ -206,6 +217,7 @@ MonoBehaviour:
   P_Movement: {fileID: 2042782233925407842}
   P_Interaction: {fileID: 233133032433488752}
   P_Inventory: {fileID: 2938900599183014585}
+  ItemInspectorManager: {fileID: 0}
 --- !u!114 &2042782233925407842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,8 +234,7 @@ MonoBehaviour:
   speedMultiplier: 1
   crouchTransitionSpeed: 5
   cam: {fileID: 4812792949177205297}
-  sensitivity: 0.5
-  castOrigin: {fileID: 6563155576641923009}
+  sensitivity: 0.1
 --- !u!114 &233133032433488752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e579fcc9f4469479f33760ea9854ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::P_Interaction
+  actionMapManager: {fileID: 0}
   inventory: {fileID: 2938900599183014585}
   cam: {fileID: 4812792949177205297}
   layerMask:
@@ -326,7 +338,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.19
+  near clip plane: 0.05
   far clip plane: 800
   field of view: 60.000004
   orthographic: 0
@@ -425,8 +437,8 @@ Transform:
   m_GameObject: {fileID: 4984078780126993144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0094, y: 0, z: 0.002}
-  m_LocalScale: {x: 0.6856213, y: 1, z: 0.68015516}
+  m_LocalPosition: {x: -0.0084, y: 0, z: 0.0045}
+  m_LocalScale: {x: 0.71226996, y: 1, z: 0.73107195}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7696396775061301951}
@@ -517,35 +529,4 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4191368725475244924}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6563155576641923009
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7296741413710445423}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7296741413710445423
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563155576641923009}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7696396775061301951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

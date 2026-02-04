@@ -3,7 +3,11 @@ using UnityEngine;
 public class InteractiveItem : Interactive
 {
     [SerializeField] public ItemScriptable itemData;
-    [SerializeField] public P_Inventory inventory;
+    private P_Inventory inventory;
+    public void Start()
+    {
+        inventory = FindFirstObjectByType<P_Inventory>();
+    }
     public override void InteractItem()
     {
         inventory.PickItem(this);
