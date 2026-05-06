@@ -12,12 +12,12 @@ public class SpeakerNoiseAnomaly : AnomalyBase
     private ScriptableReplic _replic;
     private void OnEnable()
     {
-        P_Inventory.OnItemPicked += TryResolve;
+       // P_Inventory.OnItemPicked += TryResolve;
     }
 
     private void OnDisable()
     {
-        P_Inventory.OnItemPicked -= TryResolve;
+       // P_Inventory.OnItemPicked -= TryResolve;
     }
     protected override void OnActivated(ReplicSource audioSource, ScriptableReplic replic)
     {
