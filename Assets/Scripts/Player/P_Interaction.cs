@@ -10,8 +10,11 @@ public class P_Interaction : MonoBehaviour
     private const float playerReach = 3f;
     private bool isAtScreen = false;
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
     public void Interact()
     {
         Ray interactionRay = new Ray(cam.transform.position, cam.transform.forward); //Если нужно пояснение к предмету - кинуть все в апдейт
