@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class InteractiveScreen : Interactive
 {
+    [SerializeField] private GameObject screenCanvas;
+    [SerializeField] private ActionMapManager actionMapManager;
+    bool interacting = false;
     public override void InteractItem()
     {
+
         Debug.Log("Вы потрогали интерактивный экран");
-<<<<<<< Updated upstream
-=======
 
         interacting = !interacting;
 
@@ -20,8 +22,6 @@ public class InteractiveScreen : Interactive
             //isActive = true;
             //screenCanvas.SetActive(isActive);
             actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Screen);
-            
-
         }
 
         else if (!interacting)
@@ -31,6 +31,6 @@ public class InteractiveScreen : Interactive
                         .DeactivateInputField();
             actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
         }
->>>>>>> Stashed changes
     }
+
 }

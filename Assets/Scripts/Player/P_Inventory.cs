@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +8,6 @@ public class P_Inventory : MonoBehaviour
     [SerializeField] private Transform activeObjectPosition;
     [SerializeField] private InventorySlot[] slots = new InventorySlot[4];
     private GameObject activeItem;
-<<<<<<< Updated upstream
-    
-   
-=======
->>>>>>> Stashed changes
 
     public int activeSlot;
 
@@ -24,19 +20,11 @@ public class P_Inventory : MonoBehaviour
             slots[activeSlot].inHandItem = Instantiate(slots[activeSlot].itemData.inHandItem, activeObjectPosition.position, activeObjectPosition.rotation, activeObjectPosition);
             if (slots[activeSlot].inHandItem.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
-<<<<<<< Updated upstream
                 Destroy(slots[activeSlot].inHandItem.GetComponent<Rigidbody>());
             }
             activeItem = slots[activeSlot].inHandItem;
             slots[activeSlot].gameObject.SetActive(true);
-            slots[activeSlot].GetComponent<Image>().sprite = slots[activeSlot].itemData.inventorySprite; 
-=======
-                Destroy(body);
-            }
-            activeItem = slots[activeSlot].inHandItem;
-            slots[activeSlot].gameObject.SetActive(true);
             slots[activeSlot].GetComponent<Image>().sprite = slots[activeSlot].itemData.inventorySprite;
->>>>>>> Stashed changes
         }
     }
 
@@ -53,12 +41,8 @@ public class P_Inventory : MonoBehaviour
     {
         if (slots[activeSlot].itemData != null)
         {
-<<<<<<< Updated upstream
-            
-            GameObject dropItem = Instantiate(slots[activeSlot].inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
-=======
+
             GameObject dropItem = Instantiate(slots[activeSlot].itemData.inHandItem, activeObjectPosition.position, activeObjectPosition.rotation);
->>>>>>> Stashed changes
             dropItem.AddComponent<Rigidbody>();
             DestroyCurrentItem();
         }
@@ -72,6 +56,8 @@ public class P_Inventory : MonoBehaviour
         Destroy(activeItem);
     }
     
+
+
     public void SetInventoryInput(int inventoryCell)
     {
         if (slots[activeSlot].inHandItem != null)

@@ -13,7 +13,9 @@ public class GetPlayerControls : MonoBehaviour
     private P_Interaction P_Interaction;
     [SerializeField]
     private P_Inventory P_Inventory;
-    
+    [SerializeField]
+    private ItemInspectorManager ItemInspectorManager;
+
 
     private void Start()
     {
@@ -67,4 +69,13 @@ public class GetPlayerControls : MonoBehaviour
         }
     }
 
+    public void OnRotatingItem(InputAction.CallbackContext ctx)
+    {
+        ItemInspectorManager.SetRotationInput(ctx.ReadValue<Vector2>());
+    }
+
+    public void OnExitRotatingItem(InputAction.CallbackContext ctx)
+    {
+        ItemInspectorManager.StopInspect();
+    }
 }

@@ -17,8 +17,6 @@ public class P_Movement : MonoBehaviour
     [Header("Настройки пользователя")]
     [SerializeField] private float sensitivity;
 
-    [SerializeField] private GameObject castOrigin;
-
 
     private float xRotation;
     private float yRotation;
@@ -33,13 +31,13 @@ public class P_Movement : MonoBehaviour
     private float initialHeight = 1f;
     private float crouchHeight = 0.25f;
     private float targetHeight;
-  
     private float currentHeight;
+
     private Vector3 initialCameraPosition;
 
     private bool isCrouch;
 
-    private const int halfHeightDivider = 2;
+    [SerializeField]private const float halfHeightDivider = 3f;
     
     
     private void Start()
@@ -84,10 +82,10 @@ public class P_Movement : MonoBehaviour
         speedMultiplier = isCrouch ? 0.5f : 1;
         if (!isCrouch && !Mathf.Approximately(initialHeight, currentHeight))
         {
-            if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, initialHeight - crouchHeight))
+            if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, (initialHeight - crouchHeight) ))
             {
-                float distanceToTop = hit.point.y - castOrigin.transform.position.y;
-                targetHeight = crouchHeight;
+                float distanceToTop = hit.point.y - transform.position.y;
+                targetHeight = crouchHeight * 2f + distanceToTop ;
             }
 
         }
@@ -123,7 +121,7 @@ public class P_Movement : MonoBehaviour
 
     private float Gravity()
     {
-        if (con.isGrounded) { verticalVelocity = 0; }
+        if (con.isGrounded) { verticalVelocity = -2f; }
         else if (!con.isGrounded) { verticalVelocity -= gravity * Time.deltaTime; }
         return verticalVelocity;
     }

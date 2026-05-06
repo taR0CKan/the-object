@@ -4,11 +4,17 @@ using UnityEngine;
 public class ItemScriptable : ScriptableObject
 {
     [SerializeField] private int itemId; //номера ключей, предметов для подноса
+    public ItemCategory itemCategory;
 
     public Sprite inventorySprite;
     public GameObject inHandItem;
-    
-    
+
+    public enum ItemCategory
+    {
+        None,
+        Speaker,
+        Test
+    }
 
 
 }
