@@ -32,16 +32,22 @@ public class GetPlayerControls : MonoBehaviour
         P_Movement.SetRotationInput(ctx.ReadValue<Vector2>());
     }
 
-    public void OnCrouch(InputAction.CallbackContext ctx) 
+    //public void OnCrouch(InputAction.CallbackContext ctx) 
+    //{
+    //    if (ctx.started)
+    //    {
+    //        P_Movement.SetCrouchInput(true);
+    //    }
+    //    else if (ctx.canceled)
+    //    {
+    //        P_Movement.SetCrouchInput(false);
+    //    }
+    //}
+
+    public void OnCrouch(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
-        {
-            P_Movement.SetCrouchInput(true);
-        }
-        else if (ctx.canceled)
-        {
-            P_Movement.SetCrouchInput(false);
-        }
+        bool isCrouching  = ctx.started;
+        P_Movement.ReceiveCrouchInput(isCrouching);   
     }
 
     public void OnInteract(InputAction.CallbackContext ctx) 

@@ -9,7 +9,7 @@ public class P_Inventory : MonoBehaviour
     [SerializeField] private InventorySlot[] slots = new InventorySlot[4];
     private GameObject activeItem;
 
-    public int activeSlot;
+    private int activeSlot;
 
     public void PickItem(InteractiveItem item)
     {
