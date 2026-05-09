@@ -35,8 +35,10 @@ public class InteractiveButton : Interactive
             {
                 activatedObject.OnInteract();
             }
-
-            ReplicSystemManager.Instance.Play(replic, audioSource);
+            if (replic != null)
+            {
+                ReplicSystemManager.Instance.Play(replic, audioSource);
+            }
             //InteractEvent?.Invoke();
         }
         else return;

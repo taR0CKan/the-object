@@ -40,8 +40,6 @@ public class P_Movement : MonoBehaviour
 
     [SerializeField]private const float halfHeightDivider = 3f;
 
-    private Coroutine crouchCoroutine;
-    private bool isCurrentlyCrouching = false;
 
 
     private void Start()
@@ -66,6 +64,7 @@ public class P_Movement : MonoBehaviour
         move = transform.right * moveInput.x + transform.forward * moveInput.z;
         move.y = Gravity();
         Movement(move);
+        Crouch(isCrouch);
         
         
     }
@@ -80,73 +79,40 @@ public class P_Movement : MonoBehaviour
     //    return !Physics.Raycast(transform.position, Vector3.up, initialHeight - crouchHeight);
     //}
 
-    //private void Crouch(bool isCrouch)
-    //{
-    //    targetHeight = isCrouch ? crouchHeight : initialHeight;
-    //    speedMultiplier = isCrouch ? 0.5f : 1;
-    //    if (!isCrouch && !Mathf.Approximately(initialHeight, currentHeight))
-    //    {
-    //        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, (initialHeight - crouchHeight) ))
-    //        {
-    //            float distanceToTop = hit.point.y - transform.position.y;
-    //            targetHeight = crouchHeight * 2f + distanceToTop ;
-    //        }
-
-    //    }
-
-    //    if (!Mathf.Approximately(targetHeight, currentHeight))
-    //    {
-    //        float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
-    //        Vector3 halfHeightDifference = new Vector3(0, (initialHeight - targetHeight) / halfHeightDivider, 0);
-    //        float camHeightDif = initialCameraPosition.y - halfHeightDifference.y;
-
-    //        currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, crouchDelta);
-    //        float newCameraPosition = Mathf.MoveTowards(cam.transform.localPosition.y, camHeightDif, crouchDelta);
-    //        cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, newCameraPosition, cam.transform.localPosition.z);
-    //        con.height = targetHeight;
-    //    }
-
-    //}
-
-    private IEnumerator CrouchCoroutine(bool isCrouch)
+    private void Crouch(bool isCrouch)
     {
-        // 1. Мгновенно обновляем множитель скорости и целевую высоту
-        speedMultiplier = isCrouch ? 0.5f : 1f;
         targetHeight = isCrouch ? crouchHeight : initialHeight;
-
-        // 2. Проверка потолка ТОЛЬКО при вставании (как в вашем исходнике)
+        
         if (!isCrouch && !Mathf.Approximately(initialHeight, currentHeight))
         {
+            speedMultiplier = 0.5f;
             if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, (initialHeight - crouchHeight)))
             {
                 float distanceToTop = hit.point.y - transform.position.y;
                 targetHeight = crouchHeight * 2f + distanceToTop;
             }
+
         }
 
-        // 3. Плавный переход (кадр за кадром)
-        while (!Mathf.Approximately(currentHeight, targetHeight))
+        if (!Mathf.Approximately(targetHeight, currentHeight))
         {
             float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
             Vector3 halfHeightDifference = new Vector3(0, (initialHeight - targetHeight) / halfHeightDivider, 0);
             float camHeightDif = initialCameraPosition.y - halfHeightDifference.y;
+            speedMultiplier = 0.5f;
 
             currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, crouchDelta);
             float newCameraPosition = Mathf.MoveTowards(cam.transform.localPosition.y, camHeightDif, crouchDelta);
             cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, newCameraPosition, cam.transform.localPosition.z);
-            con.height = targetHeight; // Ваша исходная логика сохранена
-
-            yield return null; // Ждём следующего кадра
+            con.height = targetHeight;
+        }
+        if (Mathf.Approximately(initialHeight, currentHeight)){
+            speedMultiplier = 1;
         }
 
-        // 4. Фиксируем точные значения, чтобы избежать дрейфа float
-        currentHeight = targetHeight;
-        con.height = targetHeight;
-        float finalCamH = initialCameraPosition.y - new Vector3(0, (initialHeight - targetHeight) / halfHeightDivider, 0).y;
-        cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, finalCamH, cam.transform.localPosition.z);
-
-        crouchCoroutine = null;
     }
+
+    
 
     private void RotateCamera(Vector2 mouseInput)
     {
@@ -174,15 +140,9 @@ public class P_Movement : MonoBehaviour
     {
         moveInput = direction;
     }
-    public void ReceiveCrouchInput(bool isCrouching)
+    public void SetCrouchInput(bool isCrouch)
     {
-        // Игнорируем, если состояние не изменилось
-        if (isCrouching == isCurrentlyCrouching) return;
-        isCurrentlyCrouching = isCrouching;
-
-        // Прерываем предыдущий переход, если кнопка нажата повторно до завершения
-        if (crouchCoroutine != null) StopCoroutine(crouchCoroutine);
-        crouchCoroutine = StartCoroutine(CrouchCoroutine(isCrouching));
+        this.isCrouch = isCrouch;
     }
     public void SetRotationInput(Vector2 rotation)
     {

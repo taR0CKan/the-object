@@ -32,23 +32,23 @@ public class GetPlayerControls : MonoBehaviour
         P_Movement.SetRotationInput(ctx.ReadValue<Vector2>());
     }
 
-    //public void OnCrouch(InputAction.CallbackContext ctx) 
-    //{
-    //    if (ctx.started)
-    //    {
-    //        P_Movement.SetCrouchInput(true);
-    //    }
-    //    else if (ctx.canceled)
-    //    {
-    //        P_Movement.SetCrouchInput(false);
-    //    }
-    //}
-
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
-        bool isCrouching  = ctx.started;
-        P_Movement.ReceiveCrouchInput(isCrouching);   
+        if (ctx.started)
+        {
+            P_Movement.SetCrouchInput(true);
+        }
+        else if (ctx.canceled)
+        {
+            P_Movement.SetCrouchInput(false);
+        }
     }
+
+    //public void OnCrouch(InputAction.CallbackContext ctx)
+    //{
+    //    bool isCrouching  = ctx.started;
+    //    P_Movement.ReceiveCrouchInput(isCrouching);   
+    //}
 
     public void OnInteract(InputAction.CallbackContext ctx) 
     {
@@ -56,7 +56,7 @@ public class GetPlayerControls : MonoBehaviour
     }
 
     public void OnInventory(InputAction.CallbackContext ctx) {
-        if (ctx.canceled){
+        if (ctx.started){
             var key = ctx.control as KeyControl;
             int keyDigit = key.keyCode switch {
                 Key.Digit1 => 1,
