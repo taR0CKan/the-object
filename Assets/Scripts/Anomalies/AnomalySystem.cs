@@ -24,7 +24,7 @@ public class AnomalySystem : MonoBehaviour
         }
 
         locationStability = Mathf.Clamp(locationStability, minStability, maxStability);
-        Debug.Log(locationStability);
+        //Debug.Log(locationStability);
         if (locationStability <= 0)
         {
             CollapseLocation();

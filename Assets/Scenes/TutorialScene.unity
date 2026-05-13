@@ -1011,19 +1011,19 @@ PrefabInstance:
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[0]'
       value: 
-      objectReference: {fileID: 1486559840}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[1]'
       value: 
-      objectReference: {fileID: 1299473285}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[2]'
       value: 
-      objectReference: {fileID: 651646799}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[3]'
       value: 
-      objectReference: {fileID: 834439711}
+      objectReference: {fileID: 0}
     - target: {fileID: 3212498968894433640, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: globalVolume
       value: 
@@ -3292,7 +3292,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 590446693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911868283}
+        m_TargetAssemblyTypeName: InteractiveScreen, Assembly-CSharp
+        m_MethodName: CheckPassword
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &590446693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3756,17 +3768,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &651646799 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6993136144751305542, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 557423177}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1 &671917838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,17 +4602,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3114477395326510758, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
   m_PrefabInstance: {fileID: 165812352}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &834439711 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5291804185208183297, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 557423177}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!114 &850496553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2311600910784885659, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
@@ -7029,17 +7019,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3645134, y: 2.7662199, z: 2.0065966}
   m_Center: {x: 0.3177433, y: 0.8831109, z: 0.11293256}
---- !u!114 &1299473285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1472765638539484491, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 557423177}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1 &1301036961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7692,17 +7671,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482942775}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1486559840 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5673767335661193300, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 557423177}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1 &1505597712
 GameObject:
   m_ObjectHideFlags: 0
@@ -10103,6 +10071,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreen
   screenCanvas: {fileID: 944211045}
   actionMapManager: {fileID: 850496553}
+  activatedObjects: []
+  correctPassword: 12345
 --- !u!1 &1912826141
 GameObject:
   m_ObjectHideFlags: 0
