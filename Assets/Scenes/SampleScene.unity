@@ -1205,28 +1205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f73020625553b46a36753d96039d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractiveDoor
---- !u!114 &1272213714 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5291804185208183297, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 2155079485553749644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
---- !u!114 &1351538911 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5673767335661193300, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 2155079485553749644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1001 &1359759473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1668,17 +1646,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561557587}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1604248253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6993136144751305542, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 2155079485553749644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1 &1652002080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,17 +1757,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652002080}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1742739621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1472765638539484491, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-  m_PrefabInstance: {fileID: 2155079485553749644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5445a670fa254458138a00ea691739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
 --- !u!1 &1753090070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,10 +2594,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8061647960029133262, guid: 7a30dacafdd8f0d44a5af0b9219c9cf6, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2869,22 +2821,22 @@ PrefabInstance:
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[0]'
       value: 
-      objectReference: {fileID: 1351538911}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[1]'
       value: 
-      objectReference: {fileID: 1742739621}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[2]'
       value: 
-      objectReference: {fileID: 1604248253}
+      objectReference: {fileID: 0}
     - target: {fileID: 2938900599183014585, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: 'slots.Array.data[3]'
       value: 
-      objectReference: {fileID: 1272213714}
+      objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.43
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2892,7 +2844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.04
+      value: -1.86
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalRotation.w
