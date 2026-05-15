@@ -84,4 +84,9 @@ public class GetPlayerControls : MonoBehaviour
     {
         ItemInspectorManager.StopInspect();
     }
+
+    public void OnExitScreen(InputAction.CallbackContext ctx)
+    {
+        GameEvents.ExitScreen();
+    }
 }
