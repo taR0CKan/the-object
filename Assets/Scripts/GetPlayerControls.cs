@@ -24,7 +24,7 @@ public class GetPlayerControls : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-       P_Movement.SetMoveInput(ctx.ReadValue<Vector3>());
+       P_Movement.SetMoveInput(ctx.ReadValue<Vector2>());
     }
 
     public void OnLooking(InputAction.CallbackContext ctx)
@@ -82,6 +82,7 @@ public class GetPlayerControls : MonoBehaviour
 
     public void OnExitRotatingItem(InputAction.CallbackContext ctx)
     {
+       
         ItemInspectorManager.StopInspect();
     }
 

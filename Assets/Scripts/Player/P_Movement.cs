@@ -22,7 +22,7 @@ public class P_Movement : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
-    private Vector3 moveInput;
+    private Vector2 moveInput;
     private Vector3 move;
     private Vector2 rotationInput;
 
@@ -61,7 +61,7 @@ public class P_Movement : MonoBehaviour
 
     private void Update()
     {
-        move = transform.right * moveInput.x + transform.forward * moveInput.z;
+        move = transform.right * moveInput.x + transform.forward * moveInput.y;
         move.y = Gravity();
         Movement(move);
         Crouch(isCrouch);
@@ -179,7 +179,7 @@ public class P_Movement : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    private void Movement(Vector3 direction)
+    private void Movement(Vector2 direction)
     {
         con.Move(move * currentSpeed * speedMultiplier * Time.deltaTime);
     }
@@ -191,7 +191,7 @@ public class P_Movement : MonoBehaviour
         return verticalVelocity;
     }
 
-    public void SetMoveInput(Vector3 direction)
+    public void SetMoveInput(Vector2 direction)
     {
         moveInput = direction;
     }

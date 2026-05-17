@@ -25,6 +25,7 @@ public class ItemInspectorManager : MonoBehaviour
     private float yRotation;
     private Vector2 rotationInput;
     // ===== INPUT CALLBACKS =====
+
     public void OnRotate(InputAction.CallbackContext context)
     {
         rotateInput = context.ReadValue<Vector2>();
@@ -46,7 +47,14 @@ public class ItemInspectorManager : MonoBehaviour
     // ===== LOGIC =====
     public void StartInspect(GameObject OriginalItem)
     {
-        if (isInspecting) return;
+
+        if (isInspecting)
+        {
+            Debug.Log($"Already inspecting: {originalItem?.name}");
+            return;
+        }
+
+        //if (isInspecting) return;
 
         originalItem = OriginalItem;
         isInspecting = true;
@@ -60,7 +68,7 @@ public class ItemInspectorManager : MonoBehaviour
         //currentItem.transform.localScale = currentItem.transform.localScale / 3;
 
         currentItem = Instantiate(originalItem, inspectAnchor, true);
-        currentItem.transform.SetParent(inspectAnchor.transform, false);
+        //currentItem.transform.SetParent(inspectAnchor.transform, false);
         originalItem.SetActive(false);
         Renderer[] renderers = currentItem.GetComponentsInChildren<Renderer>();
 

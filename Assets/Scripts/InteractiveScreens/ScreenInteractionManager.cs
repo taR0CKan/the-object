@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ScreenInteractionManager : MonoBehaviour
@@ -70,7 +71,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
         //currentScreen.screenCanvas.gameObject.SetActive(false);
         actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
-
+        EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(ReturnFromScreen());
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -89,7 +90,7 @@ public class ScreenInteractionManager : MonoBehaviour
                 playerCamera.position,
                 currentScreen.viewPoint.position,
                 Time.deltaTime * moveSpeed);
-            Debug.Log(playerCamera.position);
+            
             playerCamera.rotation = Quaternion.Slerp(
                 playerCamera.rotation,
                 currentScreen.viewPoint.rotation,

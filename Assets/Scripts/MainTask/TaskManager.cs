@@ -1,31 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    [Header("Visitor")]
-    [SerializeField] private VisitorBehaviour visitorPrefab;
+    public event Action<string> setCurrentName;
 
-    [Header("Route")]
+    [SerializeField] private VisitorBehaviour visitorPrefab;
+    [SerializeField] private MainTaskProcessing computer;
     [SerializeField] private List<Transform> waypoints;
+    [SerializeField] private Transform deskCardPoint;
+    [SerializeField] private float doorWaitTime = 5f;
+
+    private int targetDoorWaypoint;
+    private string currentName;
 
     [Header("Settings")]
     [SerializeField] private float spawnDelay = 3f;
+    [SerializeField] private float inputTimeout = 10f;
 
-    [Header("Processing")]
-    [SerializeField] private float processingTime = 5f;
+    [SerializeField]
+    private List<string> visitorNames;
 
     private VisitorBehaviour currentVisitor;
+    private Coroutine timeoutCoroutine;
+    private Coroutine doorWaitCoroutine;
+
 
     private void Start()
     {
+        setCurrentName += computer.SetCorrectName;
+        computer.InputCorrect += OnCorrectInput;
+        // computer.InputWrong += OnWrongInput;
         SpawnVisitor();
     }
 
     private void SpawnVisitor()
     {
-        Debug.Log("Создание посетителя");
+        currentName = GenerateVisitorName();
 
         currentVisitor = Instantiate(
             visitorPrefab,
@@ -33,69 +46,122 @@ public class TaskManager : MonoBehaviour
             Quaternion.identity
         );
 
-        currentVisitor.Initialize(waypoints);
-
+        currentVisitor.Initialize(waypoints, currentName);
         currentVisitor.ReachedWaypoint += OnReachedWaypoint;
-        currentVisitor.WaitFinished += OnWaitFinished;
+        currentVisitor.CardDelivered += OnCardDelivered;
         currentVisitor.VisitorFinished += OnVisitorFinished;
-
         currentVisitor.StartRoute();
+    }
+
+    private string GenerateVisitorName()
+    {
+        return visitorNames[UnityEngine.Random.Range(0, visitorNames.Count)];
     }
 
     private void OnReachedWaypoint(int waypointIndex)
     {
-        Debug.Log($"Посетитель достиг точки {waypointIndex}");
-
-        // Точка ожидания
         if (waypointIndex == 2)
         {
-            Debug.Log("Началась обработка");
-
-            // EVENT: activate machine
-            // EVENT: play animation
-            // EVENT: send signal
-
-            currentVisitor.Wait(processingTime);
+            Debug.Log("Выдача карточки");
+            currentVisitor.GiveCard(deskCardPoint);
+            return;
         }
-        else
+        if (waypointIndex == targetDoorWaypoint)
         {
+            Debug.Log("Ждет открытия двери");
+
+            doorWaitCoroutine =
+                StartCoroutine(WaitForDoor());
+
+            return;
+        } 
             currentVisitor.MoveToNextWaypoint();
-        }
     }
 
-    private void OnWaitFinished()
+    private void OnCardDelivered()
     {
-        Debug.Log("Обработка завершена");
+        setCurrentName?.Invoke(currentName);
+        timeoutCoroutine = StartCoroutine(InputTimeout());
+    }
 
-        // EVENT: stop machine
-        // EVENT: send complete signal
+    private IEnumerator InputTimeout()
+    {
+        yield return new WaitForSeconds(inputTimeout);
+        Debug.Log("Время вышло");
 
+        FailVisitor();
+    }
+
+    private IEnumerator WaitForDoor()
+    {
+        yield return new WaitForSeconds(doorWaitTime);
+
+        Debug.Log("Дверь не открыли");
+
+        FailVisitor();
+    }
+
+    public void OnDoorOpened()
+    {
+        if (doorWaitCoroutine != null)
+        {
+            StopCoroutine(doorWaitCoroutine);
+        }
+
+        Debug.Log("Дверь открыта");
+        // Пусть проходит на фиксированную точку
+        //currentVisitor.MoveToNextWaypoint();
+    }
+
+    private void OnCorrectInput(int assignedRoom)
+    {
+        if (timeoutCoroutine != null)
+        {
+            StopCoroutine(timeoutCoroutine);
+        }
+
+        Debug.Log("Имя введено верно");
+
+        currentVisitor.ReturnAndDestroyCard(() =>
+        {
+            currentVisitor.MoveToNextWaypoint();
+        });
+        targetDoorWaypoint = waypoints.Count - assignedRoom;
+        Debug.Log($"Назначенная дверь: {targetDoorWaypoint}");
         currentVisitor.MoveToNextWaypoint();
+    }
+
+    //private void OnWrongInput()
+    //{
+    //    if (timeoutCoroutine != null) { StopCoroutine(timeoutCoroutine); } 
+    //    Debug.Log("Имя введено неверно");
+    //    FailVisitor();
+    //}
+
+    private void FailVisitor()
+    {
+        currentVisitor.KillVisitor();
     }
 
     private void OnVisitorFinished()
     {
-        Debug.Log("Посетитель покинул локацию");
-
-        UnsubscribeVisitor();
-
+        Cleanup();
         StartCoroutine(SpawnNewVisitorWithDelay());
     }
 
     private IEnumerator SpawnNewVisitorWithDelay()
     {
         yield return new WaitForSeconds(spawnDelay);
-
         SpawnVisitor();
     }
 
-    private void UnsubscribeVisitor()
+    private void Cleanup()
     {
-        if (currentVisitor == null)
-            return;
-
-        currentVisitor.ReachedWaypoint -= OnReachedWaypoint;
-        currentVisitor.WaitFinished -= OnWaitFinished;
-        currentVisitor.VisitorFinished -= OnVisitorFinished;
+        if (currentVisitor != null)
+        {
+            currentVisitor.ReachedWaypoint -= OnReachedWaypoint;
+            currentVisitor.CardDelivered -= OnCardDelivered;
+            currentVisitor.VisitorFinished -= OnVisitorFinished;
+        }
     }
 }

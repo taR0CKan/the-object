@@ -22,7 +22,7 @@ public abstract class AnomalyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        system = FindObjectOfType<AnomalySystem>();
+        system = FindFirstObjectByType<AnomalySystem>();
         gameObject.SetActive(false);
     }
 

@@ -9,16 +9,42 @@ public class VisitorBehaviour : MonoBehaviour
     [SerializeField] private float visitorSpeed = 2f;
     [SerializeField] private float reachDistance = 0.1f;
 
+    [Header("Card")]
+    [SerializeField] private InspectableItem visitorCardPrefab;
+    [SerializeField] private Transform handPoint;
+    [SerializeField] private float cardMoveDuration = 0.5f;
+
+    public string VisitorName { get; private set; }
+
     private List<Transform> waypoints;
-    private int currentWaypointIndex = 0;
+    private int currentWaypointIndex = 1;
+
+    private InspectableItem spawnedCard;
+    private Coroutine moveRoutine;
+
+    private bool isDead;
 
     public event Action<int> ReachedWaypoint;
-    public event Action WaitFinished;
     public event Action VisitorFinished;
+    public event Action CardDelivered;
 
-    public void Initialize(List<Transform> newWaypoints)
+    public void Initialize(List<Transform> newWaypoints, string visitorName)
     {
         waypoints = newWaypoints;
+        VisitorName = visitorName;
+
+        SpawnCard();
+    }
+
+    private void SpawnCard()
+    {
+        spawnedCard = Instantiate(visitorCardPrefab, handPoint.position, handPoint.rotation);
+
+        spawnedCard.transform.SetParent(handPoint);
+        spawnedCard.transform.localPosition = Vector3.zero;
+        spawnedCard.transform.localRotation = Quaternion.identity;
+
+        spawnedCard.SetName(VisitorName);
     }
 
     public void StartRoute()
@@ -28,25 +54,75 @@ public class VisitorBehaviour : MonoBehaviour
 
     public void MoveToNextWaypoint()
     {
-        StartCoroutine(MoveCoroutine());
+        if (moveRoutine != null || isDead)
+            return;
+
+        moveRoutine = StartCoroutine(MoveCoroutine());
     }
 
-    public void Wait(float waitTime)
+    public void GiveCard(Transform deskPoint)
     {
-        StartCoroutine(WaitCoroutine(waitTime));
+        if (spawnedCard == null || isDead)
+            return;
+
+        StartCoroutine(GiveCardCoroutine(deskPoint));
+    }
+
+    private IEnumerator GiveCardCoroutine(Transform deskPoint)
+    {
+        spawnedCard.transform.SetParent(null);
+
+        float elapsed = 0f;
+        Vector3 startPos = spawnedCard.transform.position;
+        Quaternion startRot = spawnedCard.transform.rotation;
+
+        while (elapsed < cardMoveDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = elapsed / cardMoveDuration;
+
+            spawnedCard.transform.position = Vector3.Lerp(startPos, deskPoint.position, t);
+            spawnedCard.transform.rotation = Quaternion.Slerp(startRot, deskPoint.rotation, t);
+
+            yield return null;
+        }
+
+        spawnedCard.transform.position = deskPoint.position;
+        spawnedCard.transform.rotation = deskPoint.rotation;
+
+        Debug.Log($"Карточка выдана: {VisitorName}");
+
+        CardDelivered?.Invoke();
+    }
+
+    public void ReturnAndDestroyCard(Action onComplete = null)
+    {
+        if (spawnedCard != null)
+        {
+            Destroy(spawnedCard.gameObject);
+            spawnedCard = null;
+        }
+        onComplete?.Invoke();
+    }
+
+    public void KillVisitor()
+    {
+        if (isDead)
+            return;
+
+        isDead = true;
+
+        VisitorFinished?.Invoke();
+
+        Destroy(gameObject);
     }
 
     private IEnumerator MoveCoroutine()
     {
-        // Маршрут завершен
         if (currentWaypointIndex >= waypoints.Count)
         {
-            Debug.Log("Посетитель завершил маршрут");
-
-            VisitorFinished?.Invoke();
-
-            Destroy(gameObject);
-
+            KillVisitor();
             yield break;
         }
 
@@ -54,37 +130,18 @@ public class VisitorBehaviour : MonoBehaviour
 
         while (Vector3.Distance(transform.position, target.position) > reachDistance)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                target.position,
-                visitorSpeed * Time.deltaTime
-            );
+            transform.position = Vector3.MoveTowards(transform.position, target.position, visitorSpeed * Time.deltaTime);
 
             yield return null;
         }
 
         int reachedIndex = currentWaypointIndex;
-
         currentWaypointIndex++;
 
-        // Даем coroutine корректно завершиться
+        moveRoutine = null;
+
         yield return null;
 
         ReachedWaypoint?.Invoke(reachedIndex);
-    }
-
-    private IEnumerator WaitCoroutine(float waitTime)
-    {
-        Debug.Log("Посетитель ожидает");
-
-        // EVENT: processing started
-
-        yield return new WaitForSeconds(waitTime);
-
-        Debug.Log("Посетитель закончил ожидание");
-
-        // EVENT: processing finished
-
-        WaitFinished?.Invoke();
     }
 }
