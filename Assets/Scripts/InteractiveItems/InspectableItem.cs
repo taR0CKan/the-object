@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InspectableItem : Interactive
 {
-    [SerializeField] private ItemInspectorManager inspector;
+    private ItemInspectorManager inspector;
     [SerializeField] private TMP_Text nameText;
     public override void InteractItem()
     {
@@ -17,6 +17,11 @@ public class InspectableItem : Interactive
     public void SetName(string name)
     {
         nameText.text = name;
+    }
+
+    public void Start()
+    {
+        inspector = FindFirstObjectByType<ItemInspectorManager>();
     }
 }
  

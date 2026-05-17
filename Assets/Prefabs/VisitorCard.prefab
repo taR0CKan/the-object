@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5483746792207202688}
   m_Layer: 0
   m_Name: VisitorCard
-  m_TagString: Untagged
+  m_TagString: InspectableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe1a1db645dea34dbcbcede23ed02ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectableItem
-  inspector: {fileID: 553987753329880485, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
   nameText: {fileID: 3314339795187167648}
 --- !u!1 &4273049596798487073
 GameObject:

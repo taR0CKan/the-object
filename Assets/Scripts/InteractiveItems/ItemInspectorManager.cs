@@ -53,7 +53,7 @@ public class ItemInspectorManager : MonoBehaviour
             Debug.Log($"Already inspecting: {originalItem?.name}");
             return;
         }
-
+        Debug.Log("начал работать инспект");
         //if (isInspecting) return;
 
         originalItem = OriginalItem;
