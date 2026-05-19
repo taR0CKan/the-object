@@ -47,19 +47,68 @@ public class VisitorBehaviour : MonoBehaviour
         spawnedCard.SetName(VisitorName);
     }
 
-    public void StartRoute()
+    #region Перемещение по точкам
+    public void StartRoute() //Первый запуск гостя
     {
         MoveToNextWaypoint();
     }
 
-    public void MoveToNextWaypoint()
+    public void MoveToNextWaypoint() // Сигнал на смену точки из менеджера
     {
         if (moveRoutine != null || isDead)
             return;
 
         moveRoutine = StartCoroutine(MoveCoroutine());
     }
+    private IEnumerator MoveCoroutine() // Смена точки
+    {
+        if (currentWaypointIndex >= waypoints.Count)
+        {
+            KillVisitor();
+            yield break;
+        }
 
+        Transform target = waypoints[currentWaypointIndex];
+
+        while (Vector3.Distance(transform.position, target.position) > reachDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, visitorSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        int reachedIndex = currentWaypointIndex;
+        currentWaypointIndex++;
+
+        moveRoutine = null;
+
+        ReachedWaypoint?.Invoke(reachedIndex);
+    }
+    public void MoveToPoint(Transform targetPoint, Action onReached) // Сигнал на смену точки в фазе ожидания двери
+    {
+        if (isDead) { return; }
+        if (moveRoutine != null)
+        {
+            StopCoroutine(moveRoutine);
+            moveRoutine = null;
+        }
+        moveRoutine = StartCoroutine(MoveToPointCoroutine(targetPoint,onReached));
+    }
+
+    private IEnumerator MoveToPointCoroutine(Transform target, Action onReached) // Смена точки в фазе ожидания двери
+    {
+        while (Vector3.Distance(transform.position, target.position) > reachDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,target.position,visitorSpeed * Time.deltaTime);
+            yield return null;
+        }
+        moveRoutine = null;
+
+        if (!isDead) { onReached?.Invoke(); }
+    }
+
+    
+    #endregion
     public void GiveCard(Transform deskPoint)
     {
         if (spawnedCard == null || isDead)
@@ -118,30 +167,5 @@ public class VisitorBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator MoveCoroutine()
-    {
-        if (currentWaypointIndex >= waypoints.Count)
-        {
-            KillVisitor();
-            yield break;
-        }
-
-        Transform target = waypoints[currentWaypointIndex];
-
-        while (Vector3.Distance(transform.position, target.position) > reachDistance)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, visitorSpeed * Time.deltaTime);
-
-            yield return null;
-        }
-
-        int reachedIndex = currentWaypointIndex;
-        currentWaypointIndex++;
-
-        moveRoutine = null;
-
-        yield return null;
-
-        ReachedWaypoint?.Invoke(reachedIndex);
-    }
+    
 }

@@ -26,8 +26,8 @@ public class MainTaskProcessing : MonoBehaviour
         if (nameInputField.text.ToString() == correctName) 
         {
             roomNumber = UnityEngine.Random.Range(1, roomsAmount+1);
-            outputText.color = new Color(21,236,11);
-            outputText.text = $"{roomNumber}";
+            outputText.color = Color.lawnGreen;
+            outputText.text = roomNumber.ToString();
             InputCorrect?.Invoke(roomNumber);   
         }
         else 

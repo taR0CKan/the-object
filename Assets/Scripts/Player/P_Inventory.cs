@@ -20,8 +20,10 @@ public class P_Inventory : MonoBehaviour
 
     public void PickItem(InteractiveItem item)
     {
+        
         if (slots[activeSlot] == null)
         {
+            item.transform.SetParent(null);
             slots[activeSlot] = item.itemData;
             slotHandItems[activeSlot] = item.gameObject;
             if (slotHandItems[activeSlot].TryGetComponent<Rigidbody>(out Rigidbody body))

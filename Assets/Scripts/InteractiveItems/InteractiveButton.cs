@@ -8,7 +8,7 @@ public class InteractiveButton : Interactive
 {
     [SerializeField] private List<InteractiveObject> activatedObjects;
     [SerializeField] public ItemScriptable requiredItem;
-    public P_Inventory inventory;
+    private P_Inventory inventory;
     public static event Action OnButtonPressed;
 
     [SerializeField] private ScriptableReplic replic;
@@ -16,6 +16,7 @@ public class InteractiveButton : Interactive
 
     private void Awake()
     {
+        inventory = FindFirstObjectByType<P_Inventory>();
         foreach (InteractiveObject activatedObject in activatedObjects) 
         {
             activatedObject.Subscribe(this);

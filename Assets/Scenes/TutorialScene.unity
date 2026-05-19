@@ -3266,7 +3266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe1a1db645dea34dbcbcede23ed02ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectableItem
-  inspector: {fileID: 850496564}
+  nameText: {fileID: 0}
 --- !u!54 &553846146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3848,10 +3848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1657b316b746c7478d6246e401a731d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreenButton
-  screenCanvas: {fileID: 944211045}
-  activatedObjects:
-  - {fileID: 1282825645}
-  correctPassword: 12345
 --- !u!65 &590446696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4536,7 +4532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe1a1db645dea34dbcbcede23ed02ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectableItem
-  inspector: {fileID: 850496564}
+  nameText: {fileID: 0}
 --- !u!54 &709117479
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5258,17 +5254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7953e8576b26c8c42b8f4634050ba50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::P_Inventory
---- !u!114 &850496564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 553987753329880485, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
-  m_PrefabInstance: {fileID: 165812352}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992075715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b0cb3a768b2274094cc26ceb60696b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemInspectorManager
 --- !u!1 &867742166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,7 +5649,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92402558037001499, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
       propertyPath: isLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 422964780172732728, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
       propertyPath: m_CastShadows
@@ -7827,17 +7812,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248867512}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1282825645 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 92402558037001499, guid: 11ec6b0b93ce9864c9c1f3829b586ec9, type: 3}
-  m_PrefabInstance: {fileID: 915992270}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f73020625553b46a36753d96039d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractiveDoor
 --- !u!1 &1290982254
 GameObject:
   m_ObjectHideFlags: 0
@@ -10950,7 +10924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe1a1db645dea34dbcbcede23ed02ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InspectableItem
-  inspector: {fileID: 850496564}
+  nameText: {fileID: 0}
 --- !u!65 &1888833338
 BoxCollider:
   m_ObjectHideFlags: 0

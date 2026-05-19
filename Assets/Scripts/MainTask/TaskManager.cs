@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,38 +6,52 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    public event Action<string> setCurrentName;
-
-    [SerializeField] private VisitorBehaviour visitorPrefab;
+    [Header("Комп")]
     [SerializeField] private MainTaskProcessing computer;
+
+    [Header("Точки перемещения")]
     [SerializeField] private List<Transform> waypoints;
-    [SerializeField] private Transform deskCardPoint;
+    [SerializeField] private List<MainTaskEndpoint> endpoints = new();
+    [SerializeField] private int receptionPointIndex = 2;
+
+
+    [Header("Время ожидания")]
     [SerializeField] private float doorWaitTime = 5f;
-
-    private int targetDoorWaypoint;
-    private string currentName;
-
-    [Header("Settings")]
-    [SerializeField] private float spawnDelay = 3f;
     [SerializeField] private float inputTimeout = 10f;
 
-    [SerializeField]
-    private List<string> visitorNames;
+
+    [Header("Настройки гостей")]
+    [SerializeField] private VisitorBehaviour visitorPrefab;
+    [SerializeField] private Transform deskCardPoint;
+    [SerializeField] private float spawnDelay = 3f;
+    [SerializeField] private List<string> visitorNames;
+
+    [SerializeField] private int destabilizeAmount;
+    [SerializeField] private int stabilizeAmount;
+    private string currentName;
+
 
     private VisitorBehaviour currentVisitor;
     private Coroutine timeoutCoroutine;
     private Coroutine doorWaitCoroutine;
+    private MainTaskEndpoint currentEndpoint;
+    private bool waitingForDoor;
+    public event Action<string> setCurrentName;
+
 
 
     private void Start()
     {
         setCurrentName += computer.SetCorrectName;
         computer.InputCorrect += OnCorrectInput;
+        InteractiveDoor.OnDoorOpened += HandleDoorOpened;
+        
         // computer.InputWrong += OnWrongInput;
         SpawnVisitor();
     }
 
-    private void SpawnVisitor()
+    #region Генерация и удаление гостя
+    private void SpawnVisitor() //Спавн и подписки гостя
     {
         currentName = GenerateVisitorName();
 
@@ -53,103 +68,35 @@ public class TaskManager : MonoBehaviour
         currentVisitor.StartRoute();
     }
 
-    private string GenerateVisitorName()
+    private string GenerateVisitorName() 
     {
         return visitorNames[UnityEngine.Random.Range(0, visitorNames.Count)];
     }
 
-    private void OnReachedWaypoint(int waypointIndex)
+    private void FailVisitor() // Запуск самоуничтожения гостя
     {
-        if (waypointIndex == 2)
-        {
-            Debug.Log("Выдача карточки");
-            currentVisitor.GiveCard(deskCardPoint);
-            return;
-        }
-        if (waypointIndex == targetDoorWaypoint)
-        {
-            Debug.Log("Ждет открытия двери");
-
-            doorWaitCoroutine =
-                StartCoroutine(WaitForDoor());
-
-            return;
-        } 
-            currentVisitor.MoveToNextWaypoint();
-    }
-
-    private void OnCardDelivered()
-    {
-        setCurrentName?.Invoke(currentName);
-        timeoutCoroutine = StartCoroutine(InputTimeout());
-    }
-
-    private IEnumerator InputTimeout()
-    {
-        yield return new WaitForSeconds(inputTimeout);
-        Debug.Log("Время вышло");
-
-        FailVisitor();
-    }
-
-    private IEnumerator WaitForDoor()
-    {
-        yield return new WaitForSeconds(doorWaitTime);
-
-        Debug.Log("Дверь не открыли");
-
-        FailVisitor();
-    }
-
-    public void OnDoorOpened()
-    {
-        if (doorWaitCoroutine != null)
-        {
-            StopCoroutine(doorWaitCoroutine);
-        }
-
-        Debug.Log("Дверь открыта");
-        // Пусть проходит на фиксированную точку
-        //currentVisitor.MoveToNextWaypoint();
-    }
-
-    private void OnCorrectInput(int assignedRoom)
-    {
+        waitingForDoor = false;
         if (timeoutCoroutine != null)
         {
             StopCoroutine(timeoutCoroutine);
+            timeoutCoroutine = null;
         }
-
-        Debug.Log("Имя введено верно");
-
-        currentVisitor.ReturnAndDestroyCard(() =>
+        if (doorWaitCoroutine != null)
         {
-            currentVisitor.MoveToNextWaypoint();
-        });
-        targetDoorWaypoint = waypoints.Count - assignedRoom;
-        Debug.Log($"Назначенная дверь: {targetDoorWaypoint}");
-        currentVisitor.MoveToNextWaypoint();
-    }
-
-    //private void OnWrongInput()
-    //{
-    //    if (timeoutCoroutine != null) { StopCoroutine(timeoutCoroutine); } 
-    //    Debug.Log("Имя введено неверно");
-    //    FailVisitor();
-    //}
-
-    private void FailVisitor()
-    {
+            StopCoroutine(doorWaitCoroutine);
+            doorWaitCoroutine = null;
+        }
         currentVisitor.KillVisitor();
     }
 
-    private void OnVisitorFinished()
+    private void OnVisitorFinished() // Реакция на самоуничтожение гостя
     {
         Cleanup();
+        currentVisitor = null;
         StartCoroutine(SpawnNewVisitorWithDelay());
     }
 
-    private IEnumerator SpawnNewVisitorWithDelay()
+    private IEnumerator SpawnNewVisitorWithDelay() // Перезапуск цикла
     {
         yield return new WaitForSeconds(spawnDelay);
         SpawnVisitor();
@@ -164,4 +111,115 @@ public class TaskManager : MonoBehaviour
             currentVisitor.VisitorFinished -= OnVisitorFinished;
         }
     }
+    #endregion
+    private void OnReachedWaypoint(int waypointIndex) // Перемещение от старта до дверей
+    {
+        if (waypointIndex == receptionPointIndex)
+        {
+            Debug.Log("Выдача карточки");
+            currentVisitor.GiveCard(deskCardPoint);
+            return;
+        }
+        if (waypointIndex == waypoints.Count - 1)
+        {
+            Debug.Log("Идет к двери");
+            currentVisitor.MoveToPoint(currentEndpoint.BeforeDoorPoint, OnReachedBeforeDoor);
+            return;
+        }
+        currentVisitor.MoveToNextWaypoint();
+    }
+
+    
+    private void OnCardDelivered() // После выдачи карточки
+    {
+        setCurrentName?.Invoke(currentName);
+        timeoutCoroutine = StartCoroutine(InputTimeout());
+    }
+
+    private IEnumerator InputTimeout() // Ожидание у стойки
+    {
+        yield return new WaitForSeconds(inputTimeout);
+        Debug.Log("Время вышло");
+        GameEvents.Destabilize(destabilizeAmount);
+        FailVisitor();
+    }
+
+    private void OnCorrectInput(int assignedRoom) // После ввода имени верно
+    {
+        if (currentVisitor == null) { return; }
+        if (timeoutCoroutine != null)
+        {
+            StopCoroutine(timeoutCoroutine);
+            timeoutCoroutine = null;
+        }
+
+        currentEndpoint = endpoints[assignedRoom - 1];
+        currentVisitor.ReturnAndDestroyCard();
+        currentVisitor.MoveToNextWaypoint();
+    }
+
+    //private void OnWrongInput()
+    //{
+    //    if (timeoutCoroutine != null) { StopCoroutine(timeoutCoroutine); } 
+    //    Debug.Log("Имя введено неверно");
+    //    FailVisitor();
+    //}
+
+
+    #region Работа с дверьми
+
+    private void CompleteDoorPass(InteractiveDoor door) //Механизм прохода в дверь и завершения проходки
+    {
+        Debug.Log("Заходим");
+        waitingForDoor = false;
+
+        if (doorWaitCoroutine != null)
+        {
+            StopCoroutine(doorWaitCoroutine);
+            doorWaitCoroutine = null;
+        }
+        currentVisitor.MoveToPoint(currentEndpoint.BehindDoorPoint, () =>
+        {
+            currentVisitor.KillVisitor();
+            door.Relock();
+            GameEvents.Stabilize(stabilizeAmount);
+            currentVisitor = null;
+        });
+    }
+
+    private void OnReachedBeforeDoor() // Дошел до двери. Открыта сразу - заходим, иначе ждем
+    {
+        Debug.Log("Дошел до двери");
+        InteractiveDoor door = currentEndpoint.Door.GetComponent<InteractiveDoor>();
+        waitingForDoor = true;
+        if (door.IsOpen)
+        {
+            CompleteDoorPass(door);
+            return;
+        }
+
+        waitingForDoor = true;
+        doorWaitCoroutine = StartCoroutine(DoorWaitCoroutine());
+    }
+    private IEnumerator DoorWaitCoroutine() // Ждем открытия
+    {
+        Debug.Log("Ждет двери");
+        yield return new WaitForSeconds(doorWaitTime);
+
+        waitingForDoor = false;
+        Debug.Log("Не дождался двери");
+        GameEvents.Destabilize(destabilizeAmount);
+        FailVisitor();
+    }
+
+    private void HandleDoorOpened(InteractiveDoor openedDoor) // Вход после ожидания
+    {
+        if (!waitingForDoor) return;
+        if (currentVisitor == null) return;
+        if (currentEndpoint == null) return;
+        if (openedDoor.gameObject != currentEndpoint.Door) return;
+        CompleteDoorPass(openedDoor);
+    }
+    #endregion
+
 }

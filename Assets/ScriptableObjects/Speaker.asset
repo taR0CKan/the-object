@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dc2adf326171e14482fcaecf622fd0c, type: 3}
-  m_Name: Key_2
+  m_Name: Speaker
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemId: 2
-  itemCategory: 0
-  inventorySprite: {fileID: 21300000, guid: 1db6c483e652b2746a09214fc1bc468c, type: 3}
-  inHandItem: {fileID: 0}
+  itemCategory: 1
+  inventorySprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  inHandItem: {fileID: 6361356374992591520, guid: 6028956cdf3adee4badbb878987a7824, type: 3}
