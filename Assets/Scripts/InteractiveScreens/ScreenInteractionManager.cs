@@ -23,13 +23,19 @@ public class ScreenInteractionManager : MonoBehaviour
 
     private bool isInScreen;
 
-    private ScreenData currentScreen;
+    private ScreenData screenData;
 
     private void OnEnable()
     {
         GameEvents.OnScreenEntered += EnterScreen;
 
         GameEvents.OnScreenExited += ExitScreen;
+
+        GameEvents.OnGiveScreenDataToScreen += ChangeScreenToAlert;
+
+        GameEvents.OnInspectionAnomalyResolved += ChangeScreenToDefault;
+
+        GameEvents.OnInspectionAnomalyFailed += ChangeScreenToDefault;
     }
 
     private void OnDisable()
@@ -37,6 +43,25 @@ public class ScreenInteractionManager : MonoBehaviour
         GameEvents.OnScreenEntered -= EnterScreen;
 
         GameEvents.OnScreenExited -= ExitScreen;
+
+        GameEvents.OnGiveScreenDataToScreen -= ChangeScreenToAlert;
+
+        GameEvents.OnInspectionAnomalyResolved -= ChangeScreenToDefault;
+
+        GameEvents.OnInspectionAnomalyFailed -= ChangeScreenToDefault;
+    }
+
+    private void ChangeScreenToAlert(ScreenData data)
+    {
+        screenData = data;
+        screenData.DefaultScreenCanvas.gameObject.SetActive(false);
+        screenData.AlertScreenCanvas.gameObject.SetActive(true);
+    }
+
+    private void ChangeScreenToDefault(AnomalyBase anomaly)
+    {
+        screenData.AlertScreenCanvas.gameObject.SetActive(false);
+        screenData.DefaultScreenCanvas.gameObject.SetActive(true);
     }
 
     private void EnterScreen(ScreenData data)
@@ -45,7 +70,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
         isInScreen = true;
 
-        currentScreen = data;
+        screenData = data;
 
         originalPos = playerCamera.position;
         originalRot = playerCamera.rotation;
@@ -57,8 +82,8 @@ public class ScreenInteractionManager : MonoBehaviour
 
 
         //playerInput.SwitchCurrentActionMap("UI");
-
-        currentScreen.screenCanvas.gameObject.SetActive(true);
+        //screenData.AlertScreenCanvas.gameObject.SetActive(false);
+        //screenData.DefaultScreenCanvas.gameObject.SetActive(true);
 
         StartCoroutine(MoveToScreen());
     }
@@ -75,25 +100,21 @@ public class ScreenInteractionManager : MonoBehaviour
         StartCoroutine(ReturnFromScreen());
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
-
-
-
-
     }
 
     IEnumerator MoveToScreen()
     {
         while (Vector3.Distance(playerCamera.position,
-               currentScreen.viewPoint.position) > 0.01f)
+               screenData.viewPoint.position) > 0.01f)
         {
             playerCamera.position = Vector3.Lerp(
                 playerCamera.position,
-                currentScreen.viewPoint.position,
+                screenData.viewPoint.position,
                 Time.deltaTime * moveSpeed);
-            
+
             playerCamera.rotation = Quaternion.Slerp(
                 playerCamera.rotation,
-                currentScreen.viewPoint.rotation,
+                screenData.viewPoint.rotation,
                 Time.deltaTime * moveSpeed);
             //Debug.Log(playerCamera.rotation.eulerAngles);
             yield return null;

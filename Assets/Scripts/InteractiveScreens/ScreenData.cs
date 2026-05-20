@@ -6,5 +6,7 @@ public class ScreenData : MonoBehaviour
 {
     public Transform viewPoint;
 
-    public Canvas screenCanvas;
+    public Canvas DefaultScreenCanvas;
+
+    public Canvas AlertScreenCanvas;
 }

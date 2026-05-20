@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,33 @@ public class P_Inventory : MonoBehaviour
     private void Start()
     {
     }
+    protected virtual void OnEnable()
+    {
+        GameEvents.OnScatterKeys += CheckScatterKeys;
+    }
 
+    protected virtual void OnDisable()
+    {
+        GameEvents.OnScatterKeys -= CheckScatterKeys;
+    }
+
+    private void CheckScatterKeys(KeyItem[] keys)
+    {
+        foreach (KeyItem key in keys)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slotHandItems[i]?.GetInstanceID() == key.GameObject().GetInstanceID())
+                {
+                    slotHandItems[i].SetActive(true);
+                    slotHandItems[i].AddComponent<Rigidbody>().useGravity = false;
+                    slotHandItems[i].GetComponent<Rigidbody>().isKinematic = true;
+                    SetInventoryInput(i + 1);
+                    DestroyCurrentItem();
+                }
+            }
+        }
+    }
     public void PickItem(InteractiveItem item)
     {
         
@@ -47,6 +74,30 @@ public class P_Inventory : MonoBehaviour
         else return null;
     }
 
+    public GameObject GetActiveItemObject()
+    {
+        if (slots[activeSlot] != null)
+        {
+            return slotHandItems[activeSlot];
+
+        }
+        else return null;
+    }
+
+    public GameObject GetActiveItemObjectAndDestroyIt()
+    {
+        if (slots[activeSlot] != null)
+        {
+            slotHandItems[activeSlot].AddComponent<Rigidbody>().useGravity = false;
+            slotHandItems[activeSlot].GetComponent<Rigidbody>().isKinematic = true;
+            GameObject returnObject = slotHandItems[activeSlot];
+            DestroyCurrentItem();
+            return returnObject;
+
+        }
+        else return null;
+    }
+
     private void DropCurrentItem()
     {
         if (slots[activeSlot] != null)
@@ -63,6 +114,7 @@ public class P_Inventory : MonoBehaviour
     public void DestroyCurrentItem()
     {
         //slots[activeSlot].inHandItem.SetActive(false);
+        slotHandItems[activeSlot] = null;
         slots[activeSlot] = null;
         ItemImageSet?.Invoke(null);
         //Destroy(activeItem);

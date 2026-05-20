@@ -1,81 +1,69 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Audio;
 
 public abstract class AnomalyBase : MonoBehaviour
 {
-    [Header("State")]
+    [Header("Base Settings")]
+    public string anomalyName;
+
+    [Header("Gameplay")]
+    public float resolveTime = 30f;
+
+    public float stabilityDamage = 15f;
+
+    public float stabilityRestore = 10f;
+
+    [Header("System")]
+    public bool canBeTriggered = true;
+
     public bool IsActive { get; protected set; }
 
-    [Header("Stability Impact")]
-    public float DestabilizationPerSecond = 5f;
-    public float StabilizationValue = 15f;
+    protected Coroutine timerCoroutine;
 
-    [Header("Timing")]
-    public float ResolveTimeLimit = 10f;
-    protected float timer;
+    protected AnomalySystem anomalySystem;
 
-    [Header("Cooldown")]
-    public float Cooldown = 20f;
-    private float cooldownTimer;
-
-    protected AnomalySystem system;
-
-    protected virtual void Awake()
+    public virtual void Initialize(AnomalySystem system)
     {
-        system = FindFirstObjectByType<AnomalySystem>();
-        gameObject.SetActive(false);
+        anomalySystem = system;
     }
 
-    protected virtual void Update()
-    {
-        if (!IsActive) return;
-
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
-        {
-            Fail();
-        }
-    }
-
-    public virtual bool CanBeActivated()
-    {
-        return cooldownTimer <= 0 && !IsActive;
-    }
-
-    public virtual void Activate(ReplicSource audioSource, ScriptableReplic replic)
+    public virtual void Activate()
     {
         IsActive = true;
-        timer = ResolveTimeLimit;
-        gameObject.SetActive(true);
-        OnActivated(audioSource, replic);
+
+        GameEvents.OnAnomalyStarted?.Invoke(this);
+
+        timerCoroutine = StartCoroutine(Timer());
     }
 
     public virtual void Resolve()
     {
+        if (!IsActive)
+            return;
+
         IsActive = false;
-        cooldownTimer = Cooldown;
-        gameObject.SetActive(false);
-        system.OnAnomalyResolved(this);
-        OnResolved();
+
+        if (timerCoroutine != null)
+            StopCoroutine(timerCoroutine);
+
+        GameEvents.OnAnomalyResolved?.Invoke(this);
     }
 
-    protected virtual void Fail()
+    public virtual void Fail()
     {
-        Debug.Log($"{name} не устранена вовремя");
+        if (!IsActive)
+            return;
+
         IsActive = false;
-        gameObject.SetActive(false);
-        OnFailed();
-        // можно усилить дестабилизацию или вызвать вторичную аномалию
+
+        GameEvents.OnAnomalyFailed?.Invoke(this);
     }
 
-    protected abstract void OnActivated(ReplicSource audioSource, ScriptableReplic replic);
-    protected abstract void OnResolved();
-    protected abstract void OnFailed();
-
-    protected virtual void LateUpdate()
+    private IEnumerator Timer()
     {
-        if (cooldownTimer > 0)
-            cooldownTimer -= Time.deltaTime;
+        yield return new WaitForSeconds(resolveTime);
+
+        Fail();
     }
 }

@@ -13,7 +13,8 @@ public class ItemScriptable : ScriptableObject
     {
         None,
         Speaker,
-        Test
+        Test,
+        Key
     }
 
 

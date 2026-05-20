@@ -1,52 +1,139 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnomalySystem : MonoBehaviour
 {
-    [Header("Stability")]
-    [Range(0, 100)]
-    public float locationStability = 100f;
-
-    [SerializeField] private float maxStability = 100f;
-    [SerializeField] private float minStability = 0f;
-
     [Header("Anomalies")]
-    [SerializeField] private List<AnomalyBase> anomalies;
+    [SerializeField]
+    private List<AnomalyBase> anomalies;
 
-    private void Update()
+    [Header("Timing")]
+    [SerializeField]
+    private float anomalyCooldown = 10f;
+
+    [Header("Stability")]
+    [SerializeField]
+    private float maxStability = 100f;
+
+    [SerializeField]
+    private float currentStability = 100f;
+
+    public bool HasActiveAnomaly { get; private set; }
+
+    private AnomalyBase currentAnomaly;
+
+    private AnomalyBase previousAnomaly;
+
+    private void Start()
     {
         foreach (var anomaly in anomalies)
         {
-            if (anomaly.IsActive)
-            {
-                locationStability -= anomaly.DestabilizationPerSecond * Time.deltaTime;
-            }
+            anomaly.Initialize(this);
         }
 
-        locationStability = Mathf.Clamp(locationStability, minStability, maxStability);
-        //Debug.Log(locationStability);
-        if (locationStability <= 0)
+        StartCoroutine(AnomalyLoop());
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnAnomalyResolved += HandleResolved;
+        GameEvents.OnAnomalyFailed += HandleFailed;
+        GameEvents.PlayerDied += OnPlayerDied;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnAnomalyResolved -= HandleResolved;
+        GameEvents.OnAnomalyFailed -= HandleFailed;
+        GameEvents.PlayerDied -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied()
+    {
+        Debug.Log("GAME OVER");
+
+        // меню смерти
+    }
+
+    private IEnumerator AnomalyLoop()
+    {
+        while (true)
         {
-            CollapseLocation();
+            if (!HasActiveAnomaly)
+            {
+                yield return new WaitForSeconds(anomalyCooldown);
+
+                StartRandomAnomaly();
+            }
+
+            yield return null;
         }
     }
 
-    public void ActivateAnomaly(AnomalyBase anomaly)
+    private void StartRandomAnomaly()
     {
-        if (!anomaly.CanBeActivated()) return;
+        List<AnomalyBase> availableAnomalies =
+            new List<AnomalyBase>();
 
-        //anomaly.Activate();
+        foreach (var anomaly in anomalies)
+        {
+            if (!anomaly.canBeTriggered)
+                continue;
+
+            if (anomaly == previousAnomaly)
+                continue;
+
+            availableAnomalies.Add(anomaly);
+        }
+
+        if (availableAnomalies.Count == 0)
+        {
+            Debug.LogWarning("Нет доступных аномалий");
+            return;
+        }
+
+        int randomIndex =
+            Random.Range(0, availableAnomalies.Count);
+
+        currentAnomaly = availableAnomalies[randomIndex];
+
+        previousAnomaly = currentAnomaly;
+
+        HasActiveAnomaly = true;
+
+        currentAnomaly.Activate();
+
+        Debug.Log("Запущена аномалия: " +
+                  currentAnomaly.anomalyName);
     }
 
-    public void OnAnomalyResolved(AnomalyBase anomaly)
+    private void HandleResolved(AnomalyBase anomaly)
     {
-        locationStability += anomaly.StabilizationValue;
-        locationStability = Mathf.Clamp(locationStability, minStability, maxStability);
+        currentStability += anomaly.stabilityRestore;
+
+        currentStability =
+            Mathf.Clamp(currentStability, 0, maxStability);
+
+        HasActiveAnomaly = false;
+
+        Debug.Log("Аномалия устранена");
     }
 
-    private void CollapseLocation()
+    private void HandleFailed(AnomalyBase anomaly)
     {
-        Debug.Log("Локация дестабилизирована. Конец.");
-        // смерть игрока / перезапуск / скрипт
+        currentStability -= anomaly.stabilityDamage;
+
+        currentStability =
+            Mathf.Clamp(currentStability, 0, maxStability);
+
+        HasActiveAnomaly = false;
+
+        Debug.Log("Аномалия провалена");
+
+        if (currentStability <= 0)
+        {
+            Debug.Log("КОЛЛАПС ЛОКАЦИИ");
+        }
     }
 }

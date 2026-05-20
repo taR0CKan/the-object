@@ -10,11 +10,26 @@ public class InteractiveScreen : Interactive
         GameEvents.EnterScreen(screenData);
         Debug.Log("отработал interactivescreen");
     }
-     
+
+    protected void OnEnable()
+    {
+        GameEvents.OnInspectionAnomalyStarted += GiveScreenDataToScreen;
+    }
+
+    protected void OnDisable()
+    {
+        GameEvents.OnInspectionAnomalyStarted -= GiveScreenDataToScreen;
+    }
+
+    private void GiveScreenDataToScreen(AnomalyBase anomaly)
+    {
+        ScreenData sharedScreenData = screenData;
+        GameEvents.OnGiveScreenDataToScreen?.Invoke(sharedScreenData);
+    }
     public void Alarm()
     {
         Debug.Log("Кнопка работает!!!!");
-    
+
     }
 
     //[SerializeField] private GameObject screenCanvas;
