@@ -7,8 +7,19 @@ public class ItemScriptable : ScriptableObject
 
     public Sprite inventorySprite;
     public GameObject inHandItem;
+<<<<<<< Updated upstream
     
     
+=======
+
+    public enum ItemCategory
+    {
+        None,
+        Speaker,
+        Test, 
+        Key
+    }
+>>>>>>> Stashed changes
 
 
 }
