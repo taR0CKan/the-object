@@ -9,6 +9,7 @@ public class P_Movement : MonoBehaviour
     [SerializeField] private int moveSpeed;
     [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private float crouchTransitionSpeed;
+    [SerializeField] private LayerMask layerMask;
     private int currentSpeed;
 
     [Header("Объекты сцены")]
@@ -123,7 +124,7 @@ public class P_Movement : MonoBehaviour
     {
         targetHeight = isCrouch ? crouchHeight : initialHeight;
         speedMultiplier = isCrouch ? 0.5f : 1f;
-
+        Debug.Log("Чето");
         if (!isCrouch)
         {
             targetHeight = GetAvailableStandHeight();
@@ -134,7 +135,7 @@ public class P_Movement : MonoBehaviour
     {
         float checkDistance = initialHeight - crouchHeight;
 
-        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, checkDistance))
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, checkDistance, ~layerMask))
         {
             float availableHeight = hit.point.y - transform.position.y;
             return Mathf.Max(crouchHeight, availableHeight);
@@ -145,6 +146,8 @@ public class P_Movement : MonoBehaviour
 
     private void ApplyCrouchTransition()
     {
+        Debug.Log("Чето2");
+
         float delta = Time.deltaTime * crouchTransitionSpeed * 1.5f;
 
         currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, delta);

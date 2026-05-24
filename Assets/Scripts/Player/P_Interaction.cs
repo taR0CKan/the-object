@@ -53,7 +53,7 @@ public class P_Interaction : MonoBehaviour
 
     public void Interact()
     {
-        Ray interactionRay = new Ray(cam.transform.position, cam.transform.forward); //Если нужно пояснение к предмету - кинуть все в апдейт
+        Ray interactionRay = new Ray(cam.transform.position, cam.transform.forward); 
         if (Physics.Raycast(interactionRay, out RaycastHit hit, playerReach, layerMask))
         {
             if (hit.collider.TryGetComponent<Interactive>(out Interactive interactive))

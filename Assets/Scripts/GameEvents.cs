@@ -10,14 +10,7 @@ public static class GameEvents
     public static event Action OnScreenExited;
     public static event Action NotifyUI;
 
-    public static event Action<int> StabilizeEvent;
-    public static event Action<int> DestabilizeEvent;
-
-    static GameEvents()
-    {
-        StabilizeEvent += Stabilize;
-        DestabilizeEvent += Destabilize;
-    }
+    
     public static void EnterScreen(ScreenData data)
     {
         OnScreenEntered?.Invoke(data);
@@ -30,14 +23,11 @@ public static class GameEvents
         NotifyUI?.Invoke();
     }
 
-    public static void Destabilize(int amount)
+    public static void AffectStability(int amount, bool affectType)
     {
 
     }
-    public static void Stabilize(int amount)
-    {
-
-    }
+   
 
     // Аномалии дефолт (вызываются у любой аномалии)
     public static Action<AnomalyBase> OnAnomalyStarted;

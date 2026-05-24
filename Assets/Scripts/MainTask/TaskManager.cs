@@ -140,7 +140,7 @@ public class TaskManager : MonoBehaviour
     {
         yield return new WaitForSeconds(inputTimeout);
         Debug.Log("Время вышло");
-        GameEvents.Destabilize(destabilizeAmount);
+        GameEvents.AffectStability(destabilizeAmount, false);
         FailVisitor();
     }
 
@@ -182,7 +182,7 @@ public class TaskManager : MonoBehaviour
         {
             currentVisitor.KillVisitor();
             door.Relock();
-            GameEvents.Stabilize(stabilizeAmount);
+            GameEvents.AffectStability(stabilizeAmount, true);
             currentVisitor = null;
         });
     }
@@ -208,7 +208,7 @@ public class TaskManager : MonoBehaviour
 
         waitingForDoor = false;
         Debug.Log("Не дождался двери");
-        GameEvents.Destabilize(destabilizeAmount);
+        GameEvents.AffectStability(destabilizeAmount, false);
         FailVisitor();
     }
 
