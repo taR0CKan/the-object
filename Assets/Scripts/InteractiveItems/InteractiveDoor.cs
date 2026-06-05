@@ -41,7 +41,6 @@ public class InteractiveDoor : InteractiveObject
         {
             if (doorCoroutine != null)
             StopCoroutine(doorCoroutine);
-
             doorCoroutine = StartCoroutine(SpinDoor());
         }
    }
@@ -54,24 +53,17 @@ public class InteractiveDoor : InteractiveObject
     IEnumerator SpinDoor()
     {
         float time = 0f;
-
         rotationAngle = isOpen ? 180f : 45f;
-
         Quaternion startRotation = transform.parent.rotation;
         Quaternion targetRotation = Quaternion.Euler(0, rotationAngle, 0);
-
         while (time < 1f)
         {
             transform.parent.rotation = Quaternion.Slerp(startRotation,targetRotation,time);
-
             time += Time.deltaTime * rotationSpeed;
             yield return null;
         }
-
         transform.parent.rotation = targetRotation;
-
         isOpen = !isOpen;
-
         if (isOpen)
         {
             OnDoorOpened?.Invoke(this);

@@ -40,7 +40,7 @@ public class InteractiveButton : Interactive
             {
                 ReplicSystemManager.Instance.Play(replic, audioSource);
             }
-            //InteractEvent?.Invoke();
+           
         }
         else return;
     }

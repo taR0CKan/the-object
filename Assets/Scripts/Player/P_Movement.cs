@@ -124,7 +124,6 @@ public class P_Movement : MonoBehaviour
     {
         targetHeight = isCrouch ? crouchHeight : initialHeight;
         speedMultiplier = isCrouch ? 0.5f : 1f;
-        Debug.Log("Чето");
         if (!isCrouch)
         {
             targetHeight = GetAvailableStandHeight();
@@ -146,7 +145,6 @@ public class P_Movement : MonoBehaviour
 
     private void ApplyCrouchTransition()
     {
-        Debug.Log("Чето2");
 
         float delta = Time.deltaTime * crouchTransitionSpeed * 1.5f;
 
@@ -182,9 +180,9 @@ public class P_Movement : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    private void Movement(Vector2 direction)
+    private void Movement(Vector3 direction)
     {
-        con.Move(move * currentSpeed * speedMultiplier * Time.deltaTime);
+        con.Move(direction * currentSpeed * speedMultiplier * Time.deltaTime);
     }
 
     private float Gravity()

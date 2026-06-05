@@ -86,6 +86,7 @@ public class TaskManager : MonoBehaviour
             StopCoroutine(doorWaitCoroutine);
             doorWaitCoroutine = null;
         }
+        GameEvents.AffectStability(destabilizeAmount, false);
         currentVisitor.KillVisitor();
     }
 
@@ -140,7 +141,6 @@ public class TaskManager : MonoBehaviour
     {
         yield return new WaitForSeconds(inputTimeout);
         Debug.Log("Время вышло");
-        GameEvents.AffectStability(destabilizeAmount, false);
         FailVisitor();
     }
 
@@ -208,7 +208,7 @@ public class TaskManager : MonoBehaviour
 
         waitingForDoor = false;
         Debug.Log("Не дождался двери");
-        GameEvents.AffectStability(destabilizeAmount, false);
+        
         FailVisitor();
     }
 

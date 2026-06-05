@@ -1,6 +1,8 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class P_Inventory : MonoBehaviour
 {
