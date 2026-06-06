@@ -7,14 +7,11 @@ public class GetPlayerControls : MonoBehaviour
 
     private PlayerInput Controls;
 
-    [SerializeField]
-    private P_Movement P_Movement;
-    [SerializeField]
-    private P_Interaction P_Interaction;
-    [SerializeField]
-    private P_Inventory P_Inventory;
-    [SerializeField]
-    private ItemInspectorManager ItemInspectorManager;
+    [SerializeField] private P_Movement P_Movement;
+    [SerializeField] private P_Interaction P_Interaction;
+    [SerializeField] private P_Inventory P_Inventory;
+    [SerializeField] private ItemInspectorManager ItemInspectorManager;
+    [SerializeField] private UIClueManager UIClueManager;
 
 
     private void Start()
@@ -89,5 +86,13 @@ public class GetPlayerControls : MonoBehaviour
     public void OnExitScreen(InputAction.CallbackContext ctx)
     {
         GameEvents.ExitScreen();
+    }
+    
+    public void OnClue (InputAction.CallbackContext ctx)
+    {
+        if (ctx.canceled)
+        {
+            UIClueManager.ToggleClue();
+        }
     }
 }

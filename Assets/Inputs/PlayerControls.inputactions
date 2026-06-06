@@ -59,6 +59,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Clue",
+                    "type": "Button",
+                    "id": "c541b675-5659-4d8e-a739-8ea977347956",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -142,7 +151,7 @@
                 {
                     "name": "",
                     "id": "ab216345-472c-405e-b44f-e847a6889016",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse Keyboard",
@@ -204,6 +213,17 @@
                     "action": "DropItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43fef1da-52df-4a0e-b5f4-81eae27e9dea",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -242,6 +262,15 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "01f74515-edac-4704-ab05-74e542590394",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Clue",
+                    "type": "Button",
+                    "id": "e5e01e59-2090-4d37-8b7c-85b47471eb86",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -292,6 +321,17 @@
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71ea3d83-b568-43eb-984e-6f2c3456bf2a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -312,6 +352,15 @@
                     "name": "Exit",
                     "type": "Button",
                     "id": "09b6a1b0-ceca-400c-874d-ed4b645e05f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Clue",
+                    "type": "Button",
+                    "id": "3fc19b6a-cff1-4fc7-95e5-9afdeb44a57e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -338,6 +387,17 @@
                     "processors": "",
                     "groups": ";Mouse Keyboard",
                     "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b6b7ea9-2914-4a80-921d-1d367d01bd65",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

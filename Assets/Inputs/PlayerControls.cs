@@ -145,6 +145,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""c541b675-5659-4d8e-a739-8ea977347956"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -228,7 +237,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab216345-472c-405e-b44f-e847a6889016"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse Keyboard"",
@@ -290,6 +299,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43fef1da-52df-4a0e-b5f4-81eae27e9dea"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -328,6 +348,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""01f74515-edac-4704-ab05-74e542590394"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5e01e59-2090-4d37-8b7c-85b47471eb86"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -378,6 +407,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71ea3d83-b568-43eb-984e-6f2c3456bf2a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -398,6 +438,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Exit"",
                     ""type"": ""Button"",
                     ""id"": ""09b6a1b0-ceca-400c-874d-ed4b645e05f6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""3fc19b6a-cff1-4fc7-95e5-9afdeb44a57e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -424,6 +473,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse Keyboard"",
                     ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b6b7ea9-2914-4a80-921d-1d367d01bd65"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -457,16 +517,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         m_Movement_Inventory = m_Movement.FindAction("Inventory", throwIfNotFound: true);
         m_Movement_DropItem = m_Movement.FindAction("DropItem", throwIfNotFound: true);
+        m_Movement_Clue = m_Movement.FindAction("Clue", throwIfNotFound: true);
         // Screen
         m_Screen = asset.FindActionMap("Screen", throwIfNotFound: true);
         m_Screen_Interact = m_Screen.FindAction("Interact", throwIfNotFound: true);
         m_Screen_Point = m_Screen.FindAction("Point", throwIfNotFound: true);
         m_Screen_Click = m_Screen.FindAction("Click", throwIfNotFound: true);
         m_Screen_Submit = m_Screen.FindAction("Submit", throwIfNotFound: true);
+        m_Screen_Clue = m_Screen.FindAction("Clue", throwIfNotFound: true);
         // Inspect
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
         m_Inspect_Rotate = m_Inspect.FindAction("Rotate", throwIfNotFound: true);
         m_Inspect_Exit = m_Inspect.FindAction("Exit", throwIfNotFound: true);
+        m_Inspect_Clue = m_Inspect.FindAction("Clue", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -555,6 +618,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Interact;
     private readonly InputAction m_Movement_Inventory;
     private readonly InputAction m_Movement_DropItem;
+    private readonly InputAction m_Movement_Clue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -590,6 +654,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/DropItem".
         /// </summary>
         public InputAction @DropItem => m_Wrapper.m_Movement_DropItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Movement_Clue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -634,6 +702,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started += instance.OnDropItem;
             @DropItem.performed += instance.OnDropItem;
             @DropItem.canceled += instance.OnDropItem;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
         }
 
         /// <summary>
@@ -663,6 +734,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started -= instance.OnDropItem;
             @DropItem.performed -= instance.OnDropItem;
             @DropItem.canceled -= instance.OnDropItem;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
         }
 
         /// <summary>
@@ -704,6 +778,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Screen_Point;
     private readonly InputAction m_Screen_Click;
     private readonly InputAction m_Screen_Submit;
+    private readonly InputAction m_Screen_Clue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Screen".
     /// </summary>
@@ -731,6 +806,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Screen/Submit".
         /// </summary>
         public InputAction @Submit => m_Wrapper.m_Screen_Submit;
+        /// <summary>
+        /// Provides access to the underlying input action "Screen/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Screen_Clue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -769,6 +848,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
         }
 
         /// <summary>
@@ -792,6 +874,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
         }
 
         /// <summary>
@@ -831,6 +916,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
     private readonly InputAction m_Inspect_Rotate;
     private readonly InputAction m_Inspect_Exit;
+    private readonly InputAction m_Inspect_Clue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Inspect".
     /// </summary>
@@ -850,6 +936,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inspect/Exit".
         /// </summary>
         public InputAction @Exit => m_Wrapper.m_Inspect_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Inspect_Clue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -882,6 +972,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
         }
 
         /// <summary>
@@ -899,6 +992,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
         }
 
         /// <summary>
@@ -994,6 +1090,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDropItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Screen" which allows adding and removing callbacks.
@@ -1030,6 +1133,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSubmit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inspect" which allows adding and removing callbacks.
@@ -1052,5 +1162,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
     }
 }

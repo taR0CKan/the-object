@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 2311600910784885659}
   - component: {fileID: 553987753329880485}
   - component: {fileID: 3212498968894433640}
+  - component: {fileID: 5695998234144355349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -320,7 +321,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7140401778210726223}
         m_TargetAssemblyTypeName: GetPlayerControls, Assembly-CSharp
-        m_MethodName: OnInteract
+        m_MethodName: OnExitScreen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -364,11 +365,71 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 09b6a1b0-ceca-400c-874d-ed4b645e05f6
     m_ActionName: 'Inspect/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7433e76-1975-4dda-835f-f12a983299c5
+    m_ActionName: 'Screen/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c243c142-fc45-49ac-b8a7-35ef9afc8380
+    m_ActionName: 'Screen/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01f74515-edac-4704-ab05-74e542590394
+    m_ActionName: 'Screen/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7140401778210726223}
+        m_TargetAssemblyTypeName: GetPlayerControls, Assembly-CSharp
+        m_MethodName: OnClue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c541b675-5659-4d8e-a739-8ea977347956
+    m_ActionName: 'Movement/Clue[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7140401778210726223}
+        m_TargetAssemblyTypeName: GetPlayerControls, Assembly-CSharp
+        m_MethodName: OnClue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5e01e59-2090-4d37-8b7c-85b47471eb86
+    m_ActionName: 'Screen/Clue[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7140401778210726223}
+        m_TargetAssemblyTypeName: GetPlayerControls, Assembly-CSharp
+        m_MethodName: OnClue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3fc19b6a-cff1-4fc7-95e5-9afdeb44a57e
+    m_ActionName: 'Inspect/Clue[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Mouse Keyboard
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 4812792949177205297}
 --- !u!114 &7140401778210726223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +446,7 @@ MonoBehaviour:
   P_Interaction: {fileID: 233133032433488752}
   P_Inventory: {fileID: 2938900599183014585}
   ItemInspectorManager: {fileID: 553987753329880485}
+  UIClueManager: {fileID: 0}
 --- !u!114 &2042782233925407842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +462,9 @@ MonoBehaviour:
   moveSpeed: 5
   speedMultiplier: 1
   crouchTransitionSpeed: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
   cam: {fileID: 4812792949177205297}
   sensitivity: 0.1
 --- !u!114 &233133032433488752
@@ -433,12 +498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::P_Inventory
   activeObjectPosition: {fileID: 6969674105817848739}
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  activeSlot: 0
 --- !u!114 &2311600910784885659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +539,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualEffectsManager
   globalVolume: {fileID: 0}
+  buildUpTime: 10
+  maxTime: 30
+  endUpTime: 1
+  pulseSpeed: 8
+  startIntensity: 0
+  maxIntensity: 1
+  pulseAmplitude: 0.15
+--- !u!114 &5695998234144355349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995914194509518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa5abc3a2eb58541b2c2a7a05f2c694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenInteractionManager
+  playerCamera: {fileID: 4191368725475244924}
+  playerMovement: {fileID: 2042782233925407842}
+  playerInput: {fileID: 242376191257607514}
+  actionMapManager: {fileID: 2311600910784885659}
+  moveSpeed: 5
 --- !u!1 &2329948056249763746
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +628,7 @@ Transform:
   m_Children:
   - {fileID: 6969674105817848739}
   - {fileID: 3114477395326510758}
+  - {fileID: 2519284038855368363}
   m_Father: {fileID: 7696396775061301951}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!20 &4812792949177205297
@@ -565,7 +649,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -605,7 +689,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3803932619183758564}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &7670862157348638920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +831,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984078780126993144}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &5080071512925911913
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,3 +863,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4191368725475244924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7448340844858752841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2519284038855368363}
+  - component: {fileID: 6451766770530228030}
+  - component: {fileID: 8296349089218853123}
+  m_Layer: 3
+  m_Name: VisibilityTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2519284038855368363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448340844858752841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.413}
+  m_LocalScale: {x: 0.071924, y: 0.071924, z: 0.071924}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4191368725475244924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6451766770530228030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448340844858752841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8296349089218853123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448340844858752841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ea31f716bd3fa4ab69ae66f9d24de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVisibilityTarget
