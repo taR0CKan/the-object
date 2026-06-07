@@ -104,8 +104,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
     IEnumerator MoveToScreen()
     {
-        while (Vector3.Distance(playerCamera.position,
-               screenData.viewPoint.position) > 0.01f)
+        while (Vector3.Distance(playerCamera.position,screenData.viewPoint.position) > 0.01f)
         {
             playerCamera.position = Vector3.Lerp(
                 playerCamera.position,

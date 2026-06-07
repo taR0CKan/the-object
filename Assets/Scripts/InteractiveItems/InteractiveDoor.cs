@@ -14,10 +14,7 @@ public class InteractiveDoor : InteractiveObject
     private bool isOpen = false;
     public bool IsOpen => isOpen;
     private float rotationAngle;
-    [SerializeField]
-    private float rotationSpeed;
-    [SerializeField]
-    private bool isLocked;
+    
 
     public static event Action<InteractiveDoor> OnDoorOpened;
 
