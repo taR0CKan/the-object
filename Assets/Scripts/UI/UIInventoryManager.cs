@@ -50,7 +50,7 @@ public class UIInventoryManager : MonoBehaviour
 
     private void ToggleUI()
     {
-        //isActive = !isActive;
-        //gameObject.SetActive(isActive);
+        isActive = !isActive;
+        gameObject.SetActive(isActive);
     }
 }

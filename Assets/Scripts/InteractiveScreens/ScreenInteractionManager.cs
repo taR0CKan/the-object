@@ -140,7 +140,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("Вышли с экрана");
+        Debug.Log("Г‚Г»ГёГ«ГЁ Г± ГЅГЄГ°Г Г­Г ");
         playerMovement.enabled = true;
     }
 }

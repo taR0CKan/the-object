@@ -53,7 +53,7 @@ public class AnomalySystem : MonoBehaviour
     {
         Debug.Log("GAME OVER");
 
-        // меню смерти
+        // Г¬ГҐГ­Гѕ Г±Г¬ГҐГ°ГІГЁ
     }
 
     private IEnumerator AnomalyLoop()
@@ -88,7 +88,7 @@ public class AnomalySystem : MonoBehaviour
 
         if (availableAnomalies.Count == 0)
         {
-            Debug.LogWarning("Нет доступных аномалий");
+            Debug.LogWarning("ГЌГҐГІ Г¤Г®Г±ГІГіГЇГ­Г»Гµ Г Г­Г®Г¬Г Г«ГЁГ©");
             return;
         }
 
@@ -103,7 +103,7 @@ public class AnomalySystem : MonoBehaviour
 
         currentAnomaly.Activate();
 
-        Debug.Log("Запущена аномалия: " + currentAnomaly.anomalyName);
+        Debug.Log("Г‡Г ГЇГіГ№ГҐГ­Г  Г Г­Г®Г¬Г Г«ГЁГї: " + currentAnomaly.anomalyName);
     }
 
     private void HandleResolved(AnomalyBase anomaly)
@@ -116,7 +116,7 @@ public class AnomalySystem : MonoBehaviour
 
         HasActiveAnomaly = false;
 
-        Debug.Log("Аномалия устранена");
+        Debug.Log("ГЂГ­Г®Г¬Г Г«ГЁГї ГіГ±ГІГ°Г Г­ГҐГ­Г ");
     }
 
     private void HandleFailed(AnomalyBase anomaly)
@@ -129,11 +129,11 @@ public class AnomalySystem : MonoBehaviour
 
         HasActiveAnomaly = false;
 
-        Debug.Log("Аномалия провалена");
+        Debug.Log("ГЂГ­Г®Г¬Г Г«ГЁГї ГЇГ°Г®ГўГ Г«ГҐГ­Г ");
 
         if (currentStability <= 0)
         {
-            Debug.Log("КОЛЛАПС ЛОКАЦИИ");
+            Debug.Log("ГЉГЋГ‹Г‹ГЂГЏГ‘ Г‹ГЋГЉГЂГ–Г€Г€");
         }
     }
 }

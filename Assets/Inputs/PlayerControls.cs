@@ -96,7 +96,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""e108daf6-5ffc-41d0-b0e1-d6b7ab6dd73b"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -145,6 +145,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""c541b675-5659-4d8e-a739-8ea977347956"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -160,9 +169,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""3D Vector"",
+                    ""name"": ""2D Vector"",
                     ""id"": ""1d5fe369-f582-4c52-9a82-e027accf59b2"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -171,30 +180,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Left"",
-                    ""id"": ""45307bf8-ebd8-467b-b6f4-dd9cdd45c978"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""9574586a-b1af-4f81-9a1f-23afb9593014"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse Keyboard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Forward"",
-                    ""id"": ""fc2ca42b-ef07-41d9-8d5f-c6e97631b5d8"",
+                    ""name"": ""Up"",
+                    ""id"": ""3634ba6e-ae05-48b7-9cd2-e4c36772c42e"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -204,9 +191,31 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Backward"",
-                    ""id"": ""48931f86-c055-4aef-9649-71442c1d6f73"",
+                    ""name"": ""Down"",
+                    ""id"": ""3da5126b-13f7-448b-9d73-2446ea187467"",
                     ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""9ad047e2-c240-4447-8752-03d760ea72bf"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""b02c84ac-678a-46a1-aea5-d1afbe592b12"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -290,6 +299,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43fef1da-52df-4a0e-b5f4-81eae27e9dea"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -305,17 +325,165 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f7433e76-1975-4dda-835f-f12a983299c5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""c243c142-fc45-49ac-b8a7-35ef9afc8380"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""01f74515-edac-4704-ab05-74e542590394"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5e01e59-2090-4d37-8b7c-85b47471eb86"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""49981906-89ca-46f7-9c01-714061ba830b"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse Keyboard"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76518fe9-8c05-4c41-94b4-30ef9b488dfa"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse Keyboard"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d5e9afa-5eea-4b6e-b2c8-ba61e03b5e44"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse Keyboard"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc09b144-5e39-4ea8-bd8d-d4f741e324b8"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse Keyboard"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71ea3d83-b568-43eb-984e-6f2c3456bf2a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Inspect"",
+            ""id"": ""51b44529-eaae-4942-a3ac-625bed3143e9"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""1fe44410-34d5-42cb-add2-46efc76f4eb7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""09b6a1b0-ceca-400c-874d-ed4b645e05f6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clue"",
+                    ""type"": ""Button"",
+                    ""id"": ""3fc19b6a-cff1-4fc7-95e5-9afdeb44a57e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a583240d-d4fd-4bfd-ad2f-9cdeb6b4e28a"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse Keyboard"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcf2f0f1-f1f7-4f4d-bfc6-ef505a4000fb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse Keyboard"",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b6b7ea9-2914-4a80-921d-1d367d01bd65"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -349,15 +517,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         m_Movement_Inventory = m_Movement.FindAction("Inventory", throwIfNotFound: true);
         m_Movement_DropItem = m_Movement.FindAction("DropItem", throwIfNotFound: true);
+        m_Movement_Clue = m_Movement.FindAction("Clue", throwIfNotFound: true);
         // Screen
         m_Screen = asset.FindActionMap("Screen", throwIfNotFound: true);
         m_Screen_Interact = m_Screen.FindAction("Interact", throwIfNotFound: true);
+        m_Screen_Point = m_Screen.FindAction("Point", throwIfNotFound: true);
+        m_Screen_Click = m_Screen.FindAction("Click", throwIfNotFound: true);
+        m_Screen_Submit = m_Screen.FindAction("Submit", throwIfNotFound: true);
+        m_Screen_Clue = m_Screen.FindAction("Clue", throwIfNotFound: true);
+        // Inspect
+        m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
+        m_Inspect_Rotate = m_Inspect.FindAction("Rotate", throwIfNotFound: true);
+        m_Inspect_Exit = m_Inspect.FindAction("Exit", throwIfNotFound: true);
+        m_Inspect_Clue = m_Inspect.FindAction("Clue", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerControls.Movement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Screen.enabled, "This will cause a leak and performance issues, PlayerControls.Screen.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Inspect.enabled, "This will cause a leak and performance issues, PlayerControls.Inspect.Disable() has not been called.");
     }
 
     /// <summary>
@@ -439,6 +618,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Interact;
     private readonly InputAction m_Movement_Inventory;
     private readonly InputAction m_Movement_DropItem;
+    private readonly InputAction m_Movement_Clue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -474,6 +654,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/DropItem".
         /// </summary>
         public InputAction @DropItem => m_Wrapper.m_Movement_DropItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Movement_Clue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -518,6 +702,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started += instance.OnDropItem;
             @DropItem.performed += instance.OnDropItem;
             @DropItem.canceled += instance.OnDropItem;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
         }
 
         /// <summary>
@@ -547,6 +734,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started -= instance.OnDropItem;
             @DropItem.performed -= instance.OnDropItem;
             @DropItem.canceled -= instance.OnDropItem;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
         }
 
         /// <summary>
@@ -585,6 +775,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Screen;
     private List<IScreenActions> m_ScreenActionsCallbackInterfaces = new List<IScreenActions>();
     private readonly InputAction m_Screen_Interact;
+    private readonly InputAction m_Screen_Point;
+    private readonly InputAction m_Screen_Click;
+    private readonly InputAction m_Screen_Submit;
+    private readonly InputAction m_Screen_Clue;
     /// <summary>
     /// Provides access to input actions defined in input action map "Screen".
     /// </summary>
@@ -600,6 +794,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Screen/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Screen_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Screen/Point".
+        /// </summary>
+        public InputAction @Point => m_Wrapper.m_Screen_Point;
+        /// <summary>
+        /// Provides access to the underlying input action "Screen/Click".
+        /// </summary>
+        public InputAction @Click => m_Wrapper.m_Screen_Click;
+        /// <summary>
+        /// Provides access to the underlying input action "Screen/Submit".
+        /// </summary>
+        public InputAction @Submit => m_Wrapper.m_Screen_Submit;
+        /// <summary>
+        /// Provides access to the underlying input action "Screen/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Screen_Clue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -629,6 +839,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
         }
 
         /// <summary>
@@ -643,6 +865,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
         }
 
         /// <summary>
@@ -676,6 +910,124 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ScreenActions" /> instance referencing this action map.
     /// </summary>
     public ScreenActions @Screen => new ScreenActions(this);
+
+    // Inspect
+    private readonly InputActionMap m_Inspect;
+    private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
+    private readonly InputAction m_Inspect_Rotate;
+    private readonly InputAction m_Inspect_Exit;
+    private readonly InputAction m_Inspect_Clue;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Inspect".
+    /// </summary>
+    public struct InspectActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InspectActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Rotate".
+        /// </summary>
+        public InputAction @Rotate => m_Wrapper.m_Inspect_Rotate;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_Inspect_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Clue".
+        /// </summary>
+        public InputAction @Clue => m_Wrapper.m_Inspect_Clue;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Inspect; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InspectActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InspectActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InspectActions" />
+        public void AddCallbacks(IInspectActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InspectActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InspectActionsCallbackInterfaces.Add(instance);
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Clue.started += instance.OnClue;
+            @Clue.performed += instance.OnClue;
+            @Clue.canceled += instance.OnClue;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InspectActions" />
+        private void UnregisterCallbacks(IInspectActions instance)
+        {
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Clue.started -= instance.OnClue;
+            @Clue.performed -= instance.OnClue;
+            @Clue.canceled -= instance.OnClue;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InspectActions.UnregisterCallbacks(IInspectActions)" />.
+        /// </summary>
+        /// <seealso cref="InspectActions.UnregisterCallbacks(IInspectActions)" />
+        public void RemoveCallbacks(IInspectActions instance)
+        {
+            if (m_Wrapper.m_InspectActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InspectActions.AddCallbacks(IInspectActions)" />
+        /// <seealso cref="InspectActions.RemoveCallbacks(IInspectActions)" />
+        /// <seealso cref="InspectActions.UnregisterCallbacks(IInspectActions)" />
+        public void SetCallbacks(IInspectActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InspectActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InspectActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InspectActions" /> instance referencing this action map.
+    /// </summary>
+    public InspectActions @Inspect => new InspectActions(this);
     private int m_MouseKeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -738,6 +1090,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDropItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Screen" which allows adding and removing callbacks.
@@ -753,5 +1112,62 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Point" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPoint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Submit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSubmit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inspect" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InspectActions.AddCallbacks(IInspectActions)" />
+    /// <seealso cref="InspectActions.RemoveCallbacks(IInspectActions)" />
+    public interface IInspectActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Clue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClue(InputAction.CallbackContext context);
     }
 }

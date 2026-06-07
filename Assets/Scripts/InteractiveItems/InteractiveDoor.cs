@@ -1,16 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using System;
+
+
 
 public class InteractiveDoor : InteractiveObject
 {
+
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private bool isLocked;
+    private Coroutine doorCoroutine;
+
     private bool isOpen = false;
+    public bool IsOpen => isOpen;
     private float rotationAngle;
-<<<<<<< Updated upstream
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
     private bool isLocked;
-=======
 
     public static event Action<InteractiveDoor> OnDoorOpened;
 
@@ -32,14 +39,13 @@ public class InteractiveDoor : InteractiveObject
         }
     }
 
->>>>>>> Stashed changes
    public override void InteractItem()
    {
-
         if (!isLocked)
         {
-            StopCoroutine(SpinDoor());
-            StartCoroutine(SpinDoor());
+            if (doorCoroutine != null)
+            StopCoroutine(doorCoroutine);
+            doorCoroutine = StartCoroutine(SpinDoor());
         }
    }
 
@@ -48,16 +54,23 @@ public class InteractiveDoor : InteractiveObject
         if (isLocked) { isLocked = false; }
         InteractItem();
    }
-   IEnumerator SpinDoor()
-   {
-        float time = 0;
-        rotationAngle = isOpen ? 45f : 180f;
-        while (time < 1)
+    IEnumerator SpinDoor()
+    {
+        float time = 0f;
+        rotationAngle = isOpen ? 180f : 45f;
+        Quaternion startRotation = transform.parent.rotation;
+        Quaternion targetRotation = Quaternion.Euler(0, rotationAngle, 0);
+        while (time < 1f)
         {
-            transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, Quaternion.Euler(0, rotationAngle, 0), time);
-            yield return null;
+            transform.parent.rotation = Quaternion.Slerp(startRotation,targetRotation,time);
             time += Time.deltaTime * rotationSpeed;
+            yield return null;
         }
+        transform.parent.rotation = targetRotation;
         isOpen = !isOpen;
-   }
+        if (isOpen)
+        {
+            OnDoorOpened?.Invoke(this);
+        }
+    }
 }

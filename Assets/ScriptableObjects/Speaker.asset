@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc2adf326171e14482fcaecf622fd0c, type: 3}
+  m_Name: Speaker
+  m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
+  itemId: 2
+  itemCategory: 1
+  inventorySprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  inHandItem: {fileID: 6361356374992591520, guid: 6028956cdf3adee4badbb878987a7824, type: 3}

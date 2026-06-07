@@ -3,9 +3,6 @@ using UnityEngine;
 public class InteractiveItem : Interactive
 {
     [SerializeField] public ItemScriptable itemData;
-<<<<<<< Updated upstream
-    
-=======
     private P_Inventory inventory;
     private bool isInteractable = true;
     public void Start()
@@ -29,5 +26,5 @@ public class InteractiveItem : Interactive
     {
         isInteractable = true;
     }
->>>>>>> Stashed changes
+
 }

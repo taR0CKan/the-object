@@ -8,15 +8,17 @@ TagManager:
   - Item
   - Button
   - Screen
+  - ScreenButton
+  - InspectableItem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Interactive
-  - 
+  - BlockRaycast
   - 
   - 
   - 
