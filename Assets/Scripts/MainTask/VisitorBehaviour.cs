@@ -163,7 +163,11 @@ public class VisitorBehaviour : MonoBehaviour
         isDead = true;
 
         VisitorFinished?.Invoke();
-
+        if (spawnedCard != null)
+        {
+            Destroy(spawnedCard.gameObject);
+            spawnedCard = null;
+        }
         Destroy(gameObject);
     }
 

@@ -44,7 +44,7 @@ public class TaskManager : MonoBehaviour
     {
         setCurrentName += computer.SetCorrectName;
         computer.InputCorrect += OnCorrectInput;
-        InteractiveDoor.OnDoorOpened += HandleDoorOpened;
+        InDoorTutorScene.OnDoorOpened += HandleDoorOpened;
         
         // computer.InputWrong += OnWrongInput;
         SpawnVisitor();
@@ -168,7 +168,7 @@ public class TaskManager : MonoBehaviour
 
     #region Работа с дверьми
 
-    private void CompleteDoorPass(InteractiveDoor door) //Механизм прохода в дверь и завершения проходки
+    private void CompleteDoorPass(InDoorTutorScene door) //Механизм прохода в дверь и завершения проходки
     {
         Debug.Log("Заходим");
         waitingForDoor = false;
@@ -190,7 +190,7 @@ public class TaskManager : MonoBehaviour
     private void OnReachedBeforeDoor() // Дошел до двери. Открыта сразу - заходим, иначе ждем
     {
         Debug.Log("Дошел до двери");
-        InteractiveDoor door = currentEndpoint.Door.GetComponent<InteractiveDoor>();
+        InDoorTutorScene door = currentEndpoint.Door.GetComponent<InDoorTutorScene>();
         waitingForDoor = true;
         if (door.IsOpen)
         {
@@ -212,7 +212,7 @@ public class TaskManager : MonoBehaviour
         FailVisitor();
     }
 
-    private void HandleDoorOpened(InteractiveDoor openedDoor) // Вход после ожидания
+    private void HandleDoorOpened(InDoorTutorScene openedDoor) // Вход после ожидания
     {
         if (!waitingForDoor) return;
         if (currentVisitor == null) return;

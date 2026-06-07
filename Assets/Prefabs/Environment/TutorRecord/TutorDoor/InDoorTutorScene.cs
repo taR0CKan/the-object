@@ -5,14 +5,16 @@ using DG.Tweening;
 public class InDoorTutorScene : InteractiveObject
 {
 
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] float closedAngle;
+    [SerializeField] float openAngle;
+
     [SerializeField] private bool isLocked;
-    private Coroutine doorCoroutine;
 
     private bool isOpen = false;
     public bool IsOpen => isOpen;
     private float rotationAngle;
 
+    public static event Action<InDoorTutorScene> OnDoorOpened;
 
     public void Awake()
     {
@@ -21,8 +23,8 @@ public class InDoorTutorScene : InteractiveObject
 
     public void Relock()
     {
-        Lock();
         InteractItem();
+        Lock();
     }
     private void Lock()
     {
@@ -38,13 +40,17 @@ public class InDoorTutorScene : InteractiveObject
         {
             if (!isOpen) 
             {
-                transform.parent.DORotate(new Vector3(0, 210, 0), 1f);
+                transform.parent.DOLocalRotate(new Vector3(0, openAngle, 0), 1f);
             }
             else 
             { 
-                transform.parent.DORotate(new Vector3(0, 90, 0), 0.5f); 
+                transform.parent.DOLocalRotate(new Vector3(0, closedAngle, 0), 0.5f); 
             }
             isOpen = !isOpen;
+            if (isOpen)
+            {
+                OnDoorOpened?.Invoke(this);
+            }
         }
     }
 

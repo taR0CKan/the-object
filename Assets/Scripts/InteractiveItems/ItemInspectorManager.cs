@@ -80,7 +80,7 @@ public class ItemInspectorManager : MonoBehaviour
         float maxSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
         float scaleFactor = 0.3f / maxSize;
         currentItem.transform.localPosition = inspectAnchor.localPosition;
-        currentItem.transform.localRotation = inspectAnchor.localRotation * Quaternion.Euler(90f, 0f, 0f);
+        currentItem.transform.localRotation = inspectAnchor.localRotation;
         currentItem.transform.localScale = currentItem.transform.localScale * scaleFactor;
 
         DisablePhysics(currentItem);
