@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+//using UnityEditor.ShaderGraph;
+>>>>>>> Stashed changes
 using UnityEngine;
 using UnityEngine.InputSystem;
 

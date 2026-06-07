@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dc2adf326171e14482fcaecf622fd0c, type: 3}
-  m_Name: Key_0
+  m_Name: Key_2
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
-  itemId: 0
-<<<<<<< Updated upstream
-=======
+  itemId: 2
   itemCategory: 3
   requestType: 0
->>>>>>> Stashed changes
-  inventorySprite: {fileID: 21300000, guid: 4c712e5cc70626f4aabe270fff01889f, type: 3}
-  inHandItem: {fileID: 1064358711925972214, guid: 26b6666f8b23dfc40a96ecf50e79c673, type: 3}
+  inventorySprite: {fileID: 21300000, guid: 13a095d512e719f4aa47424a28e3c98d, type: 3}
+  inHandItem: {fileID: 0}

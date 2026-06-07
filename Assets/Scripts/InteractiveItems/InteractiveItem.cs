@@ -3,5 +3,31 @@ using UnityEngine;
 public class InteractiveItem : Interactive
 {
     [SerializeField] public ItemScriptable itemData;
+<<<<<<< Updated upstream
     
+=======
+    private P_Inventory inventory;
+    private bool isInteractable = true;
+    public void Start()
+    {
+        inventory = FindFirstObjectByType<P_Inventory>();
+    }
+    public override void InteractItem()
+    {
+        if (isInteractable)
+        {
+            inventory.PickItem(this);
+        }
+    }
+
+    public void SetNotInteractable()
+    {
+        isInteractable = false;
+    }
+
+    public void SetInteractable()
+    {
+        isInteractable = true;
+    }
+>>>>>>> Stashed changes
 }

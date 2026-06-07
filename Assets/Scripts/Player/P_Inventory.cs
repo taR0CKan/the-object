@@ -33,7 +33,37 @@ public class P_Inventory : MonoBehaviour
     {
         if (slots[activeSlot].itemData != null)
         {
+<<<<<<< Updated upstream
             return slots[activeSlot].itemData;
+=======
+            return slots[activeSlot];
+        }
+        else return null;
+    }
+
+    public GameObject GetActiveItemObject()
+    {
+        if (slots[activeSlot] != null)
+        {
+            return slotHandItems[activeSlot];
+
+        }
+        else return null;
+    }
+
+    public GameObject GetActiveItemObjectAndDestroyIt()
+    {
+        if (slots[activeSlot] != null)
+        {
+            slotHandItems[activeSlot].AddComponent<Rigidbody>().useGravity = false;
+            slotHandItems[activeSlot].GetComponent<Rigidbody>().isKinematic = true;
+            GameObject returnObject = slotHandItems[activeSlot];
+            slotHandItems[activeSlot] = null;
+            slots[activeSlot] = null;
+            ItemImageSet?.Invoke(null);
+            return returnObject;
+
+>>>>>>> Stashed changes
         }
         else return null;
     }
@@ -51,10 +81,18 @@ public class P_Inventory : MonoBehaviour
 
     public void DestroyCurrentItem()
     {
+<<<<<<< Updated upstream
         slots[activeSlot].itemData = null;
         slots[activeSlot].inHandItem = null;
         slots[activeSlot].gameObject.SetActive(false);
         Destroy(activeItem);
+=======
+        //slots[activeSlot].inHandItem = null;
+        slotHandItems[activeSlot] = null;
+        slots[activeSlot] = null;
+        ItemImageSet?.Invoke(null);
+        //Destroy(activeItem);
+>>>>>>> Stashed changes
     }
     
 

@@ -5,10 +5,34 @@ public class InteractiveDoor : InteractiveObject
 {
     private bool isOpen = false;
     private float rotationAngle;
+<<<<<<< Updated upstream
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
     private bool isLocked;
+=======
+
+    public static event Action<InteractiveDoor> OnDoorOpened;
+
+    public void Awake()
+    {
+        InteractiveButton.OnButtonPressed += OnInteract;
+    }
+
+    public void Relock()
+    {
+        InteractItem();
+        Lock();
+    }
+    private void Lock()
+    {
+        if (!isLocked)
+        {
+            isLocked = true;
+        }
+    }
+
+>>>>>>> Stashed changes
    public override void InteractItem()
    {
 
