@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 3
   itemCategory: 3
   requestType: 0
-  inventorySprite: {fileID: 21300000, guid: 13a095d512e719f4aa47424a28e3c98d, type: 3}
+  inventorySprite: {fileID: 21300000, guid: a4d659d3e4eaf6940a88552fef5d23e4, type: 3}
   inHandItem: {fileID: 0}
