@@ -1,4 +1,5 @@
-using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,7 @@ public class ActionMapManager : MonoBehaviour
 
     private void Start()
     {
-        Controls = GetComponent<PlayerInput>(); //Управление картами инпутов
+        Controls = GetComponent<PlayerInput>(); //Г“ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ ГЄГ Г°ГІГ Г¬ГЁ ГЁГ­ГЇГіГІГ®Гў
     }
 
     //public bool SwitchToInteraction(bool isOnScreen)

@@ -39,21 +39,18 @@ public abstract class AnomalyBase : MonoBehaviour
 
     public virtual void Resolve()
     {
-        if (!IsActive)
-            return;
+        if (!IsActive) return;
 
         IsActive = false;
 
-        if (timerCoroutine != null)
-            StopCoroutine(timerCoroutine);
+        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
 
         GameEvents.OnAnomalyResolved?.Invoke(this);
     }
 
     public virtual void Fail()
     {
-        if (!IsActive)
-            return;
+        if (!IsActive)  return;
 
         IsActive = false;
 

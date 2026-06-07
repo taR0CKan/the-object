@@ -10,17 +10,21 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AnomalyAudioProfile[] anomalyProfiles;
 
-    private Dictionary<string, AudioSource> activeSources =
-        new Dictionary<string, AudioSource>();
+    public float PhoneVoiceVolume;
+    private Dictionary<string, AudioSource> activeSources = new Dictionary<string, AudioSource>();
 
-    private Dictionary<AnomalyBase, List<string>> anomalyPlayingSounds =
-        new Dictionary<AnomalyBase, List<string>>();
+    private Dictionary<AnomalyBase, List<string>> anomalyPlayingSounds = new Dictionary<AnomalyBase, List<string>>();
+
+    private Coroutine voiceCoroutine;
 
     private void OnEnable()
     {
         GameEvents.OnAnomalyStarted += OnAnomalyStarted;
         GameEvents.OnAnomalyResolved += OnAnomalyEnded;
         GameEvents.OnAnomalyFailed += OnAnomalyEnded;
+
+        GameEvents.OnPhoneAnswered += StopAudio;
+        GameEvents.OnPlayVoiceSequence += PlayVoiceSequence;
     }
 
     private void OnDisable()
@@ -28,24 +32,22 @@ public class AudioManager : MonoBehaviour
         GameEvents.OnAnomalyStarted -= OnAnomalyStarted;
         GameEvents.OnAnomalyResolved -= OnAnomalyEnded;
         GameEvents.OnAnomalyFailed -= OnAnomalyEnded;
+
+        GameEvents.OnPhoneAnswered -= StopAudio;
+        GameEvents.OnPlayVoiceSequence -= PlayVoiceSequence;
     }
 
     private void OnAnomalyStarted(AnomalyBase anomaly)
     {
         foreach (AnomalyAudioProfile profile in anomalyProfiles)
         {
-            if (profile.anomaly != anomaly)
-                continue;
+            if (profile.anomaly != anomaly) continue;
 
-            anomalyPlayingSounds[anomaly] =
-                new List<string>();
+            anomalyPlayingSounds[anomaly] = new List<string>();
 
             foreach (AudioSequence sequence in profile.sounds)
             {
-                StartCoroutine(
-                    PlaySequence(
-                        anomaly,
-                        sequence));
+                StartCoroutine(PlaySequence(anomaly, sequence));
             }
 
             break;
@@ -54,8 +56,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnAnomalyEnded(AnomalyBase anomaly)
     {
-        if (!anomalyPlayingSounds.ContainsKey(anomaly))
-            return;
+        if (!anomalyPlayingSounds.ContainsKey(anomaly)) return;
 
         foreach (string audioID in anomalyPlayingSounds[anomaly])
         {
@@ -64,47 +65,36 @@ public class AudioManager : MonoBehaviour
 
             AudioSource source = activeSources[audioID];
 
-            StartCoroutine(
-                FadeOutAndDestroy(
-                    audioID,
-                    source,
-                    1f));
+            StartCoroutine(FadeOutAndDestroy(audioID, source, 1f));
         }
 
         anomalyPlayingSounds.Remove(anomaly);
     }
 
-    private IEnumerator PlaySequence(
-        AnomalyBase anomaly,
-        AudioSequence sequence)
+    private IEnumerator PlaySequence(AnomalyBase anomaly, AudioSequence sequence)
     {
         yield return new WaitForSeconds(sequence.startDelay);
 
-        GameObject obj =
-            new GameObject(sequence.audioID);
+        GameObject obj = new GameObject(sequence.audioName);
 
-        obj.transform.SetParent(audioRoot);
-
-        AudioSource source =
-            obj.AddComponent<AudioSource>();
+        obj.transform.SetParent(sequence.source);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+        AudioSource source = obj.AddComponent<AudioSource>();
 
         source.clip = sequence.clip;
         source.volume = 0f;
         source.pitch = sequence.pitch;
         source.loop = sequence.loop;
+        source.spatialBlend = 1f;
 
         source.Play();
 
-        activeSources.Add(sequence.audioID, source);
+        activeSources.Add(sequence.audioName, source);
 
-        anomalyPlayingSounds[anomaly]
-            .Add(sequence.audioID);
+        anomalyPlayingSounds[anomaly].Add(sequence.audioName);
 
-        yield return StartCoroutine(
-            FadeIn(
-                source,
-                sequence.volume,
-                sequence.fadeIn));
+        yield return StartCoroutine(FadeIn(source,sequence.volume, sequence.fadeIn));
     }
 
     private IEnumerator FadeIn(
@@ -129,10 +119,7 @@ public class AudioManager : MonoBehaviour
         source.volume = targetVolume;
     }
 
-    private IEnumerator FadeOutAndDestroy(
-        string audioID,
-        AudioSource source,
-        float duration)
+    private IEnumerator FadeOutAndDestroy(string audioID, AudioSource source, float duration)
     {
         float startVolume = source.volume;
 
@@ -155,5 +142,45 @@ public class AudioManager : MonoBehaviour
         activeSources.Remove(audioID);
 
         Destroy(source.gameObject);
+    }
+
+    private void StopAudio(string audioName)
+    {
+        if (!activeSources.ContainsKey(audioName)) return;
+
+        AudioSource source = activeSources[audioName];
+
+        StartCoroutine(FadeOutAndDestroy(audioName, source, 0.1f));
+    }
+
+    private void PlayVoiceSequence(AudioClip[] clips)
+    {
+        if (voiceCoroutine != null) StopCoroutine(voiceCoroutine);
+
+        voiceCoroutine = StartCoroutine(PlayVoiceSequenceCoroutine(clips));
+    }
+
+    private IEnumerator PlayVoiceSequenceCoroutine(AudioClip[] clips)
+    {
+        GameObject obj = new GameObject("GuestVoice");
+
+        obj.transform.SetParent(audioRoot);
+
+        AudioSource source = obj.AddComponent<AudioSource>();
+
+        source.spatialBlend = 0f;
+
+        foreach (AudioClip clip in clips)
+        {
+            if (clip == null) continue;
+
+            source.clip = clip;
+            source.volume = PhoneVoiceVolume;
+            source.Play();
+
+            yield return new WaitForSeconds(clip.length);
+        }
+
+        Destroy(obj);
     }
 }

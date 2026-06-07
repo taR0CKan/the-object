@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Key_2
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemId: 2
-  itemCategory: 0
+  itemCategory: 3
+  requestType: 0
   inventorySprite: {fileID: 21300000, guid: 13a095d512e719f4aa47424a28e3c98d, type: 3}
   inHandItem: {fileID: 0}

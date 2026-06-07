@@ -3,9 +3,11 @@ using UnityEngine;
 [System.Serializable]
 public class AudioSequence
 {
-    public string audioID;
+    public string audioName;
 
     public AudioClip clip;
+
+    public Transform source;
 
     [Range(0f, 1f)]
     public float volume = 1f;

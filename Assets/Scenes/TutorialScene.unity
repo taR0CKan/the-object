@@ -95,6 +95,9 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: ccbbf00693b56b64b9b10e2cf060958f, type: 2}
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingSettings: {fileID: 0}
+
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5574,6 +5577,8 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce4b5e9df4d4f314b8b4898d940855c0, type: 3}
 --- !u!1 &944211045
+--- !u!1 &1208222923
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8048,6 +8053,11 @@ Transform:
   m_PrefabInstance: {fileID: 293737180}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1415458360
+  m_Script: {fileID: 11500000, guid: 4de036d69c6af394badac265c460064e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractiveScreen
+--- !u!1 &1912826141
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

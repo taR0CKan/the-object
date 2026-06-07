@@ -126,8 +126,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
     IEnumerator ReturnFromScreen()
     {
-        while (Vector3.Distance(playerCamera.position,
-               originalPos) > 0.01f)
+        while (Vector3.Distance(playerCamera.position, originalPos) > 0.01f)
         {
             playerCamera.position = Vector3.Lerp(
                 playerCamera.position,
@@ -141,6 +140,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log("Âûøëè ñ ýêðàíà");
         playerMovement.enabled = true;
     }
 }

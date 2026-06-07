@@ -1,6 +1,6 @@
 using System;
 using UnityEditor;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+//using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public static class GameEvents
@@ -29,26 +29,41 @@ public static class GameEvents
     }
    
 
-    // Аномалии дефолт (вызываются у любой аномалии)
+    // ГЂГ­Г®Г¬Г Г«ГЁГЁ Г¤ГҐГґГ®Г«ГІ (ГўГ»Г§Г»ГўГ ГѕГІГ±Гї Гі Г«ГѕГЎГ®Г© Г Г­Г®Г¬Г Г«ГЁГЁ)
     public static Action<AnomalyBase> OnAnomalyStarted;
     public static Action<AnomalyBase> OnAnomalyResolved;
     public static Action<AnomalyBase> OnAnomalyFailed;
 
-    // Аномалия "Визит проверяющего"
+    // ГЂГ­Г®Г¬Г Г«ГЁГї "Г‚ГЁГ§ГЁГІ ГЇГ°Г®ГўГҐГ°ГїГѕГ№ГҐГЈГ®"
     public static Action<AnomalyBase> OnInspectionAnomalyStarted;
     public static Action<AnomalyBase> OnInspectionAnomalyResolved;
     public static Action<AnomalyBase> OnInspectionAnomalyFailed;
 
     public static Action<ScreenData> OnGiveScreenDataToScreen;
 
-    // Взаимодействия с ключами от дверей
+    // Г‚Г§Г ГЁГ¬Г®Г¤ГҐГ©Г±ГІГўГЁГї Г± ГЄГ«ГѕГ·Г Г¬ГЁ Г®ГІ Г¤ГўГҐГ°ГҐГ©
     public static Action<KeyItem> OnKeyPicked;
     public static Action<KeyHolder, KeyItem> OnKeyReturned;
     public static Action<KeyItem[]> OnScatterKeys;
 
-    // Изменение стабильности
+    // ГЂГ­Г®Г¬Г Г«ГЁГї "ГЏГ°Г®Г±ГјГЎГ  ГЈГ®Г±ГІГї"
+
+    public static Action<GuestRequestData> OnGuestRequestStarted;
+
+    public static Action<string> OnPhoneAnswered;
+
+    public static Action<AudioClip[]> OnPlayVoiceSequence;
+
+    public static Action<int, RequestItemType> OnTrayDelivered;
+
+    public static Action OnInvalidRequestIgnored;
+    public static Action OnGuestRequestFinished;
+
+
+
+    // Г€Г§Г¬ГҐГ­ГҐГ­ГЁГҐ Г±ГІГ ГЎГЁГ«ГјГ­Г®Г±ГІГЁ
     public static Action<float> OnStabilityChanged;
 
-    // Смерть игрока
+    // Г‘Г¬ГҐГ°ГІГј ГЁГЈГ°Г®ГЄГ 
     public static Action PlayerDied;
 }

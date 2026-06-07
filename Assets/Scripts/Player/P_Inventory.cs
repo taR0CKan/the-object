@@ -69,6 +69,7 @@ public class P_Inventory : MonoBehaviour
     {
         if (slots[activeSlot] != null)
         {
+          
             return slots[activeSlot];
         }
         else return null;
@@ -94,6 +95,7 @@ public class P_Inventory : MonoBehaviour
             DestroyCurrentItem();
             return returnObject;
 
+
         }
         else return null;
     }
@@ -114,10 +116,13 @@ public class P_Inventory : MonoBehaviour
     public void DestroyCurrentItem()
     {
         //slots[activeSlot].inHandItem.SetActive(false);
+        
+      
         slotHandItems[activeSlot] = null;
         slots[activeSlot] = null;
         ItemImageSet?.Invoke(null);
         //Destroy(activeItem);
+
     }
     
 

@@ -41,13 +41,12 @@ public class LostKeysAnomaly : AnomalyBase
             keysToLose[i].transform.SetParent(randomPositions[i]);
         }
 
-        Debug.Log("Ключи потеряны");
+        Debug.Log("ГЉГ«ГѕГ·ГЁ ГЇГ®ГІГҐГ°ГїГ­Г»");
     }
 
     private void OnKeyReturned(KeyHolder holder, KeyItem key)
     {
-        if (!IsActive)
-            return;
+        if (!IsActive) return;
 
         foreach (KeyItem lostKey in keysToLose)
         {
@@ -55,7 +54,7 @@ public class LostKeysAnomaly : AnomalyBase
             {
                 returnedKeys++;
 
-                Debug.Log("Возвращено: " + returnedKeys);
+                Debug.Log("Г‚Г®Г§ГўГ°Г Г№ГҐГ­Г®: " + returnedKeys);
 
                 break;
             }
@@ -71,13 +70,13 @@ public class LostKeysAnomaly : AnomalyBase
     {
         base.Resolve();
 
-        Debug.Log("Аномалия устранена");
+        Debug.Log("ГЂГ­Г®Г¬Г Г«ГЁГї ГіГ±ГІГ°Г Г­ГҐГ­Г ");
     }
 
     public override void Fail()
     {
         base.Fail();
 
-        Debug.Log("Игрок не успел");
+        Debug.Log("Г€ГЈГ°Г®ГЄ Г­ГҐ ГіГ±ГЇГҐГ«");
     }
 }
