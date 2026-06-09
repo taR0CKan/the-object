@@ -13,6 +13,7 @@ public class UIClueManager : MonoBehaviour
 
     public void ToggleClue()
     {
+        Debug.Log(isShowing);
         if (!isShowing) 
         {
             if(!tutorialHintHidden) 

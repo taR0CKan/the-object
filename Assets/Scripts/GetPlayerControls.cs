@@ -88,7 +88,7 @@ public class GetPlayerControls : MonoBehaviour
         GameEvents.ExitScreen();
     }
     
-    public void OnClue (InputAction.CallbackContext ctx)
+    public void OnClue(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled)
         {
