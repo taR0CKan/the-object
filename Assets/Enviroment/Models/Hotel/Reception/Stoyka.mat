@@ -126,7 +126,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _UseAoMap: 1
-    - _UseColorMap: 0
+    - _UseColorMap: 1
     - _UseEmissiveMap: 0
     - _UseMetallicMap: 1
     - _UseNormalMap: 1
