@@ -15802,22 +15802,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-<<<<<<< HEAD
-    m_RemovedGameObjects:
-    - {fileID: 7448340844858752841, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1765356020}
-=======
+
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4191368725475244924, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1413366367}
     m_AddedComponents: []
->>>>>>> 53c7f26d2d4f3efe3c90aa65090a5823d6670d4a
+
   m_SourcePrefab: {fileID: 100100000, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
 --- !u!20 &1277247032 stripped
 Camera:
@@ -19951,7 +19943,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1191454949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &1765356009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1961995914194509518, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
@@ -19996,8 +19987,7 @@ MonoBehaviour:
   playerInput: {fileID: 1765356017}
   actionMapManager: {fileID: 1765356012}
   moveSpeed: 10
-=======
->>>>>>> 53c7f26d2d4f3efe3c90aa65090a5823d6670d4a
+
 --- !u!4 &1779710178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1902804692336534176, guid: d5026a2aaf9d8394a9e8b886d38dbfac, type: 3}
