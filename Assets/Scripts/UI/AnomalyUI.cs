@@ -55,8 +55,7 @@ public class AnomalyUI : MonoBehaviour
         if (timerCoroutine != null)
             StopCoroutine(timerCoroutine);
 
-        timerCoroutine =
-            StartCoroutine(UpdateTimer(anomaly.resolveTime));
+        timerCoroutine = StartCoroutine(UpdateTimer(anomaly.resolveTime));
     }
 
     private IEnumerator UpdateTimer(float time)
@@ -65,8 +64,7 @@ public class AnomalyUI : MonoBehaviour
 
         while (remainingTime > 0)
         {
-            timer.text =
-                $"Осталось: {Mathf.CeilToInt(remainingTime)} сек.";
+            timer.text = $"Осталось: {Mathf.CeilToInt(remainingTime)} сек.";
 
             remainingTime -= Time.deltaTime;
 

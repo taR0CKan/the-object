@@ -40,8 +40,6 @@ public class LostKeysAnomaly : AnomalyBase
             keysToLose[i].transform.rotation = randomPositions[i].rotation;
             keysToLose[i].transform.SetParent(randomPositions[i]);
         }
-
-        Debug.Log("Êëþ÷è ïîòåðÿíû");
     }
 
     private void OnKeyReturned(KeyHolder holder, KeyItem key)
@@ -53,9 +51,6 @@ public class LostKeysAnomaly : AnomalyBase
             if (lostKey == key && holder.correctKeyID == key.keyID)
             {
                 returnedKeys++;
-
-                Debug.Log("Âîçâðàùåíî: " + returnedKeys);
-
                 break;
             }
         }
