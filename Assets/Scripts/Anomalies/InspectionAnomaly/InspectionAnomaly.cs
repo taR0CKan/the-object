@@ -10,10 +10,10 @@ public class InspectionAnomaly : AnomalyBase
 
     [SerializeField] private GameObject demonObject;
 
-    [Header("UI")]
-    [SerializeField] private GameObject warningUI;
+    //[Header("UI")]
+    //[SerializeField] private GameObject warningUI;
 
-    [SerializeField] private float inspectionTime = 10f;
+    //[SerializeField] private float inspectionTime = 10f;
 
     public override void Activate()
     {
@@ -28,7 +28,7 @@ public class InspectionAnomaly : AnomalyBase
 
     private IEnumerator InspectionRoutine()
     {
-        float timer = inspectionTime;
+        float timer = base.resolveTime;
 
         while (timer > 0)
         {
@@ -47,7 +47,7 @@ public class InspectionAnomaly : AnomalyBase
 
         if (seen)
         {
-            Debug.Log("Игрок замечен");
+            Debug.Log("Игрок замечен Player Spotted");
 
             GameEvents.PlayerDied?.Invoke();
 
@@ -55,7 +55,7 @@ public class InspectionAnomaly : AnomalyBase
         }
         else
         {
-            Debug.Log("Игрок спрятался");
+            Debug.Log("Игрок спрятался Player Hides");
 
             Resolve();
         }

@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     private Transform audioRoot;
 
     [SerializeField]
-    private AnomalyAudioProfile[] anomalyProfiles;
+    private AnomalyAudioSet[] anomalyProfiles;
 
     public float PhoneVoiceVolume;
     private Dictionary<string, AudioSource> activeSources = new Dictionary<string, AudioSource>();
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnAnomalyStarted(AnomalyBase anomaly)
     {
-        foreach (AnomalyAudioProfile profile in anomalyProfiles)
+        foreach (AnomalyAudioSet profile in anomalyProfiles)
         {
             if (profile.anomaly != anomaly) continue;
 
