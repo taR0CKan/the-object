@@ -41,6 +41,8 @@ public class P_Movement : MonoBehaviour
 
     [SerializeField]private const float halfHeightDivider = 3f;
 
+    private bool wasWalking;
+    private string currentSurfaceTag;
 
 
     private void Start()
@@ -66,8 +68,41 @@ public class P_Movement : MonoBehaviour
         move.y = Gravity();
         Movement(move);
         Crouch(isCrouch);
-        
-        
+        //if (move.x != 0 && move.z != 0)
+        //{
+        //    Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f);
+        //    GameEvents.OnPlayerStartsWalk?.Invoke(hit.collider.tag);
+        //}
+        bool isWalking =
+        con.isGrounded &&
+        (moveInput.x != 0 || moveInput.y != 0);
+
+            if (Physics.Raycast(
+                transform.position,
+                Vector3.down,
+                out RaycastHit hit,
+                5f))
+            {
+                if (hit.collider.tag != currentSurfaceTag)
+                {
+                    currentSurfaceTag = hit.collider.tag;
+
+                    GameEvents.OnPlayerSurfaceChanged?.Invoke(currentSurfaceTag);
+                }
+            }
+
+            if (isWalking && !wasWalking)
+            {
+                GameEvents.OnPlayerStartsWalk?.Invoke();
+            }
+
+            if (!isWalking && wasWalking)
+            {
+                GameEvents.OnPlayerStopsWalk?.Invoke();
+            }
+
+            wasWalking = isWalking;
+
     }
 
     private void LateUpdate()

@@ -8,6 +8,12 @@ public class AudioManager : MonoBehaviour
     private Transform audioRoot;
 
     [SerializeField]
+    private AudioSource footstepsSource;
+
+    [SerializeField]
+    private FootstepsAudioSet[] surfaceProfiles;
+
+    [SerializeField]
     private AnomalyAudioSet[] anomalyProfiles;
 
     public float PhoneVoiceVolume;
@@ -17,6 +23,10 @@ public class AudioManager : MonoBehaviour
 
     private Coroutine voiceCoroutine;
 
+    private Coroutine footstepsCoroutine;
+
+    private FootstepsAudioSet currentFootstepProfile;
+
     private void OnEnable()
     {
         GameEvents.OnAnomalyStarted += OnAnomalyStarted;
@@ -25,6 +35,11 @@ public class AudioManager : MonoBehaviour
 
         GameEvents.OnPhoneAnswered += StopAudio;
         GameEvents.OnPlayVoiceSequence += PlayVoiceSequence;
+
+        GameEvents.OnPlayerStartsWalk += PlayFootsteps;
+        GameEvents.OnPlayerStopsWalk += StopFootsteps;
+        GameEvents.OnPlayerSurfaceChanged += ChangeSurface;
+
     }
 
     private void OnDisable()
@@ -35,8 +50,73 @@ public class AudioManager : MonoBehaviour
 
         GameEvents.OnPhoneAnswered -= StopAudio;
         GameEvents.OnPlayVoiceSequence -= PlayVoiceSequence;
+
+        GameEvents.OnPlayerStartsWalk -= PlayFootsteps;
+        GameEvents.OnPlayerStopsWalk -= StopFootsteps;
+        GameEvents.OnPlayerSurfaceChanged -= ChangeSurface;
     }
 
+    private void PlayFootsteps()
+    {
+        if (footstepsCoroutine != null)
+            return;
+
+        footstepsCoroutine =
+            StartCoroutine(FootstepsRoutine());
+    }
+
+    private void StopFootsteps()
+    {
+        if (footstepsCoroutine != null)
+        {
+            StopCoroutine(footstepsCoroutine);
+            footstepsCoroutine = null;
+        }
+
+        footstepsSource.Stop();
+    }
+    private void ChangeSurface(string tagName)
+    {
+        foreach (FootstepsAudioSet profile in surfaceProfiles)
+        {
+            if (profile.tagSurface == tagName)
+            {
+                currentFootstepProfile = profile;
+                return;
+            }
+        }
+
+        currentFootstepProfile = null;
+    }
+
+    private IEnumerator FootstepsRoutine()
+    {
+        while (true)
+        {
+            if (currentFootstepProfile == null)
+            {
+                yield return null;
+                continue;
+            }
+
+            AudioSequence sequence =
+                currentFootstepProfile.sounds[
+                    Random.Range(
+                        0,
+                        currentFootstepProfile.sounds.Length)
+                ];
+
+            footstepsSource.pitch =
+                Random.Range(0.95f, 1.05f);
+
+            footstepsSource.clip = sequence.clip;
+            footstepsSource.volume = sequence.volume;
+            footstepsSource.Play();
+
+            yield return new WaitForSeconds(
+                sequence.clip.length * 1.2f);
+        }
+    }
     private void OnAnomalyStarted(AnomalyBase anomaly)
     {
         foreach (AnomalyAudioSet profile in anomalyProfiles)

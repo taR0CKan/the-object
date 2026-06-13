@@ -66,4 +66,9 @@ public static class GameEvents
 
     // Ñìåðòü èãðîêà
     public static Action PlayerDied;
+
+
+    public static Action OnPlayerStartsWalk;
+    public static Action OnPlayerStopsWalk;
+    public static Action<string> OnPlayerSurfaceChanged;
 }

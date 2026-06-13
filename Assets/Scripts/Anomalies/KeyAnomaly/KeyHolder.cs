@@ -16,8 +16,8 @@ public class KeyHolder : Interactive
     {
         //if (key.keyID != correctKeyID) return;
 
-        key.transform.position = transform.position;
-        key.transform.rotation = transform.rotation;
+        key.transform.position = transform.position + new Vector3(0f, 0.05f, 0f);
+        key.transform.rotation = new Quaternion(0f, -90f, -90f, 0f);
         key.transform.SetParent(this.transform);
         GameEvents.OnKeyReturned?.Invoke(this, key);
 

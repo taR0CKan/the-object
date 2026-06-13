@@ -10,6 +10,9 @@ TagManager:
   - Screen
   - ScreenButton
   - InspectableItem
+  - Carpet
+  - Wood
+  - Plitka
   layers:
   - Default
   - TransparentFX
