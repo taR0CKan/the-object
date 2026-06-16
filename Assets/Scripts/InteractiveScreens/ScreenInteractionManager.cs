@@ -98,8 +98,8 @@ public class ScreenInteractionManager : MonoBehaviour
         actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(ReturnFromScreen());
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     IEnumerator MoveToScreen()

@@ -45,9 +45,10 @@ public class TaskManager : MonoBehaviour
         setCurrentName += computer.SetCorrectName;
         computer.InputCorrect += OnCorrectInput;
         InDoorTutorScene.OnDoorOpened += HandleDoorOpened;
-        
+        ;
         // computer.InputWrong += OnWrongInput;
-        SpawnVisitor();
+        //SpawnVisitor();
+        StartCoroutine(SpawnNewVisitorWithDelay());
     }
 
     #region Генерация и удаление гостя
@@ -99,6 +100,8 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator SpawnNewVisitorWithDelay() // Перезапуск цикла
     {
+        Debug.Log("Stareted");
+        Debug.Log(spawnDelay);
         yield return new WaitForSeconds(spawnDelay);
         SpawnVisitor();
     }
