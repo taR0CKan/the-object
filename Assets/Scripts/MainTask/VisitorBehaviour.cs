@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,13 +7,14 @@ using UnityEngine;
 public class VisitorBehaviour : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float visitorSpeed = 2f;
+    [SerializeField] private float visitorSpeed = 1f;
     [SerializeField] private float reachDistance = 0.1f;
 
     [Header("Card")]
     [SerializeField] private InspectableItem visitorCardPrefab;
     [SerializeField] private Transform handPoint;
     [SerializeField] private float cardMoveDuration = 0.5f;
+    [SerializeField] private Animator anim;
 
     public string VisitorName { get; private set; }
 
@@ -30,6 +32,7 @@ public class VisitorBehaviour : MonoBehaviour
 
     public void Initialize(List<Transform> newWaypoints, string visitorName)
     {
+        anim = GetComponentInChildren<Animator>();
         waypoints = newWaypoints;
         VisitorName = visitorName;
 
@@ -57,7 +60,7 @@ public class VisitorBehaviour : MonoBehaviour
     {
         if (moveRoutine != null || isDead)
             return;
-
+        anim.enabled = true;
         moveRoutine = StartCoroutine(MoveCoroutine());
     }
     private IEnumerator MoveCoroutine() // Смена точки
@@ -69,7 +72,7 @@ public class VisitorBehaviour : MonoBehaviour
         }
 
         Transform target = waypoints[currentWaypointIndex];
-
+        RotateToTarget(target);
         while (Vector3.Distance(transform.position, target.position) > reachDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, visitorSpeed * Time.deltaTime);
@@ -81,7 +84,7 @@ public class VisitorBehaviour : MonoBehaviour
         currentWaypointIndex++;
 
         moveRoutine = null;
-
+        anim.enabled = false;
         ReachedWaypoint?.Invoke(reachedIndex);
     }
     public void MoveToPoint(Transform targetPoint, Action onReached) // Сигнал на смену точки в фазе ожидания двери
@@ -92,11 +95,13 @@ public class VisitorBehaviour : MonoBehaviour
             StopCoroutine(moveRoutine);
             moveRoutine = null;
         }
+        anim.enabled = true;
         moveRoutine = StartCoroutine(MoveToPointCoroutine(targetPoint,onReached));
     }
 
     private IEnumerator MoveToPointCoroutine(Transform target, Action onReached) // Смена точки в фазе ожидания двери
     {
+        RotateToTarget(target);
         while (Vector3.Distance(transform.position, target.position) > reachDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position,target.position,visitorSpeed * Time.deltaTime);
@@ -105,6 +110,7 @@ public class VisitorBehaviour : MonoBehaviour
         moveRoutine = null;
 
         if (!isDead) { onReached?.Invoke(); }
+        anim.enabled = false;
     }
 
     
@@ -171,5 +177,11 @@ public class VisitorBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void RotateToTarget(Transform nextTarget)
+    {   
+        Vector3 direction = nextTarget.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.DORotateQuaternion(targetRotation, 0.5f);
+    }
     
 }
