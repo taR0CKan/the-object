@@ -67,13 +67,13 @@ public class InspectionAnomaly : AnomalyBase
         GameEvents.OnInspectionAnomalyResolved?.Invoke(this);
         //warningUI.SetActive(false);
 
-        //demonObject.SetActive(false);
+        demonObject.SetActive(false);
     }
 
     public override void Fail()
     {
         base.Fail();
         GameEvents.OnInspectionAnomalyFailed?.Invoke(this);
-        //warningUI.SetActive(false);
+        demonObject.SetActive(false);
     }
 }

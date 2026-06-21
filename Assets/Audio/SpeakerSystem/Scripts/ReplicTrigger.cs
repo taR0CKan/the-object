@@ -26,5 +26,6 @@ public class ReplicTrigger : MonoBehaviour
         triggered = true;
 
         ReplicSystemManager.Instance.Play(replic, audioSource);
+        this.gameObject.SetActive(false);
     }
 }
