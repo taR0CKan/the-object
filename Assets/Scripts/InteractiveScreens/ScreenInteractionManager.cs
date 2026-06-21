@@ -95,7 +95,7 @@ public class ScreenInteractionManager : MonoBehaviour
         isInScreen = false;
 
         //currentScreen.screenCanvas.gameObject.SetActive(false);
-        actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
+        
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(ReturnFromScreen());
         Cursor.lockState = CursorLockMode.Locked;
@@ -141,5 +141,6 @@ public class ScreenInteractionManager : MonoBehaviour
         }
         Debug.Log("Âûøëè ñ ýêðàíà");
         playerMovement.enabled = true;
+        actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
     }
 }
