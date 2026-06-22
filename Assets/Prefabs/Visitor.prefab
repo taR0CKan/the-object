@@ -82,6 +82,7 @@ MonoBehaviour:
   visitorCardPrefab: {fileID: 5483746792207202688, guid: 184d03d037f9ed64d862c68c7947dfd6, type: 3}
   handPoint: {fileID: 4090763522692551477}
   cardMoveDuration: 0.5
+  anim: {fileID: 0}
 --- !u!1001 &4222716482759459238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,9 +147,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8674276122664378910, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8674276122664378910, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
       propertyPath: m_Name
       value: Iv Pole Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592506131919666903, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592506131919666903, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 34b149e32a4808540bc403996c2f997a, type: 3}
       propertyPath: m_Controller
