@@ -104,6 +104,7 @@ public class ScreenInteractionManager : MonoBehaviour
 
     IEnumerator MoveToScreen()
     {
+        actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Screen);
         while (Vector3.Distance(playerCamera.position,screenData.viewPoint.position) > 0.01f)
         {
             playerCamera.position = Vector3.Lerp(
@@ -118,9 +119,8 @@ public class ScreenInteractionManager : MonoBehaviour
             //Debug.Log(playerCamera.rotation.eulerAngles);
             yield return null;
         }
+        
         yield return new WaitForSeconds(1f);
-        actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Screen);
-
     }
 
     IEnumerator ReturnFromScreen()
@@ -139,7 +139,6 @@ public class ScreenInteractionManager : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("Âûøëè ñ ýêðàíà");
         playerMovement.enabled = true;
         actionMapManager.SwitchMode(ActionMapManager.InteractionMode.Movement);
     }
