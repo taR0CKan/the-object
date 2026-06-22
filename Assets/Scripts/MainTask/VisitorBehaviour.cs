@@ -14,7 +14,7 @@ public class VisitorBehaviour : MonoBehaviour
     [SerializeField] private InspectableItem visitorCardPrefab;
     [SerializeField] private Transform handPoint;
     [SerializeField] private float cardMoveDuration = 0.5f;
-    [SerializeField] private Animator anim;
+    private Animator anim;
 
     public string VisitorName { get; private set; }
 
@@ -102,6 +102,7 @@ public class VisitorBehaviour : MonoBehaviour
     private IEnumerator MoveToPointCoroutine(Transform target, Action onReached) // Смена точки в фазе ожидания двери
     {
         anim.enabled = true;
+        anim.Play("Walk");
         RotateToTarget(target);
         while (Vector3.Distance(transform.position, target.position) > reachDistance)
         {

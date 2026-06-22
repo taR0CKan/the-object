@@ -8,14 +8,14 @@ public class UIInventoryManager : MonoBehaviour
     private GameObject activeOutline;
     private GameObject activeSlot;
     private P_Inventory inventory;
-    private bool isActive = true;
+   
     
     void Awake()
     {
         inventory = FindFirstObjectByType<P_Inventory>();
         inventory.ItemImageSet += SetItemImage;
         inventory.ActiveSlotSet += ToggleActiveSlot;
-        GameEvents.NotifyUI += ToggleUI;
+       
 
     }
 
@@ -48,9 +48,9 @@ public class UIInventoryManager : MonoBehaviour
         }
     }
 
-    private void ToggleUI()
-    {
-        isActive = !isActive;
-        gameObject.SetActive(isActive);
-    }
+    //private void ToggleUI()
+    //{
+    //    isActive = !isActive;
+    //    gameObject.SetActive(isActive);
+    //}
 }
