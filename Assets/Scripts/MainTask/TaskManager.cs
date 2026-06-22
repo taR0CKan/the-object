@@ -87,7 +87,7 @@ public class TaskManager : MonoBehaviour
             StopCoroutine(doorWaitCoroutine);
             doorWaitCoroutine = null;
         }
-        GameEvents.AffectStability(destabilizeAmount, false);
+        GameEvents.OnChangeStabilityBaseLoop?.Invoke(stabilizeAmount, false);
         currentVisitor.KillVisitor();
     }
 
@@ -161,12 +161,12 @@ public class TaskManager : MonoBehaviour
         currentVisitor.MoveToNextWaypoint();
     }
 
-    //private void OnWrongInput()
-    //{
-    //    if (timeoutCoroutine != null) { StopCoroutine(timeoutCoroutine); } 
-    //    Debug.Log("Имя введено неверно");
-    //    FailVisitor();
-    //}
+    private void OnWrongInput()
+    {
+        if (timeoutCoroutine != null) { StopCoroutine(timeoutCoroutine); }
+        Debug.Log("Имя введено неверно");
+        FailVisitor();
+    }
 
 
     #region Работа с дверьми
@@ -185,7 +185,7 @@ public class TaskManager : MonoBehaviour
         {
             currentVisitor.KillVisitor();
             door.Relock();
-            GameEvents.AffectStability(stabilizeAmount, true);
+            GameEvents.OnChangeStabilityBaseLoop?.Invoke(stabilizeAmount, true);
             currentVisitor = null;
         });
     }

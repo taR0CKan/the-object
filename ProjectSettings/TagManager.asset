@@ -13,6 +13,7 @@ TagManager:
   - Carpet
   - Wood
   - Plitka
+  - RedLight
   layers:
   - Default
   - TransparentFX
