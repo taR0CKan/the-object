@@ -1654,6 +1654,10 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 1440081975}
+    - target: {fileID: 3221001230229885563, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3803932619183758564, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4437,11 +4441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff31a2289ca5894c851ae4ba95f0eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeakerNoiseAnomaly
-  anomalyName: 
-  resolveTime: 30
-  stabilityDamage: 15
-  stabilityRestore: 10
-  canBeTriggered: 1
 --- !u!4 &582929164
 Transform:
   m_ObjectHideFlags: 0
@@ -13953,10 +13952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781eedf8eac595c408ab4be3b0b583c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnomalySystem
-  anomalies: []
-  anomalyCooldown: 10
-  maxStability: 100
-  currentStability: 100
 --- !u!4 &1915511772
 Transform:
   m_ObjectHideFlags: 0
