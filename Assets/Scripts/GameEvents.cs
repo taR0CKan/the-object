@@ -23,15 +23,15 @@ public static class GameEvents
         NotifyUI?.Invoke();
     }
 
-    public static void AffectStability(int amount, bool affectType)
-    {
-        if (affectType)
-        {
-            OnStabilityChanged?.Invoke(50 + amount);
-        }
-        else { OnStabilityChanged?.Invoke(50 - amount); }
-    }
-   
+    //public static void AffectStability(int amount, bool affectType)
+    //{
+    //    if (affectType)
+    //    {
+    //        OnStabilityChanged?.Invoke(50 + amount);
+    //    }
+    //    else { OnStabilityChanged?.Invoke(50 - amount); }
+    //}
+
 
     // Àíîìàëèè äåôîëò (âûçûâàþòñÿ ó ëþáîé àíîìàëèè)
     public static Action<AnomalyBase> OnAnomalyStarted;
@@ -67,6 +67,7 @@ public static class GameEvents
 
     // Èçìåíåíèå ñòàáèëüíîñòè
     public static Action<float> OnStabilityChanged;
+    public static Action<float, bool> OnChangeStabilityBaseLoop;
 
     // Ñìåðòü èãðîêà
     public static Action PlayerDied;

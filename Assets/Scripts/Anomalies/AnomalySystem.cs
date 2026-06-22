@@ -37,6 +37,7 @@ public class AnomalySystem : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEvents.OnChangeStabilityBaseLoop += ChangeStability;
         GameEvents.OnAnomalyResolved += HandleResolved;
         GameEvents.OnAnomalyFailed += HandleFailed;
         GameEvents.PlayerDied += OnPlayerDied;
@@ -44,9 +45,20 @@ public class AnomalySystem : MonoBehaviour
 
     private void OnDisable()
     {
+        GameEvents.OnChangeStabilityBaseLoop -= ChangeStability;
         GameEvents.OnAnomalyResolved -= HandleResolved;
         GameEvents.OnAnomalyFailed -= HandleFailed;
         GameEvents.PlayerDied -= OnPlayerDied;
+    }
+
+    private void ChangeStability(float stability, bool affectType)
+    {
+        if (affectType)
+        {
+            currentStability = currentStability + stability;
+        }
+        else { currentStability = currentStability - stability; }
+        GameEvents.OnStabilityChanged?.Invoke(currentStability);
     }
 
     private void OnPlayerDied()

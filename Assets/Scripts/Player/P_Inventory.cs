@@ -59,7 +59,8 @@ public class P_Inventory : MonoBehaviour
             }
             slotHandItems[activeSlot].transform.SetParent(activeObjectPosition);
             slotHandItems[activeSlot].transform.localPosition = Vector3.zero;
-            slotHandItems[activeSlot].transform.rotation = Quaternion.identity;
+            slotHandItems[activeSlot].transform.localRotation = Quaternion.identity;
+            slotHandItems[activeSlot].transform.localRotation = Quaternion.Euler(0f, 180f, 0f); ;
             activeItem = slotHandItems[activeSlot];
             ItemImageSet?.Invoke(slots[activeSlot].inventorySprite);
         }

@@ -30,6 +30,8 @@ public class HotelRoomDoor : Interactive
 
         tray.transform.localRotation = Quaternion.identity;
 
+        tray.transform.localScale = new Vector3(15, 7, 10);
+
         tray.placeholder.HasItem = false;
 
         tray.placeholder.DestroyItem();

@@ -9,6 +9,9 @@ public class ReplicTrigger : MonoBehaviour
     [SerializeField] private ReplicSource audioSource;
     [SerializeField] private float delay;
 
+    [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private float duration = 2f;
+    [SerializeField] private float magnitude = 0.15f;
     private bool triggered;
 
     private void OnTriggerEnter(Collider other)
@@ -19,6 +22,9 @@ public class ReplicTrigger : MonoBehaviour
 
     IEnumerator WaitForDelay(Collider other)
     {
+        if (cameraShake != null) { cameraShake.Shake(replic.voice.length, magnitude); }
+
+
         yield return new WaitForSeconds(delay);
         if (triggered) yield return null;
         if (!other.CompareTag("Player")) yield return null;

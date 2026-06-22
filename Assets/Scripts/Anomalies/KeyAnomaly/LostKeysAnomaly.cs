@@ -38,7 +38,10 @@ public class LostKeysAnomaly : AnomalyBase
         {
             keysToLose[i].transform.position = randomPositions[i].position;
             keysToLose[i].transform.rotation = randomPositions[i].rotation;
+            keysToLose[i].transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             keysToLose[i].transform.SetParent(randomPositions[i]);
+            //keysToLose[i].transform.localPosition = Vector3.zero;
+            //keysToLose[i].transform.localRotation = Quaternion.identity;
         }
     }
 

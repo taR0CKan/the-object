@@ -648,7 +648,7 @@ Transform:
   m_GameObject: {fileID: 46925086}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.07, y: 1.848, z: 1.211}
+  m_LocalPosition: {x: 26.972, y: 1.848, z: 1.211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1679,7 +1679,7 @@ PrefabInstance:
       objectReference: {fileID: 912612627}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.66
+      value: 1.37
       objectReference: {fileID: 0}
     - target: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1724,7 +1724,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7696396775061301951, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 415698415}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3803932619183758564, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2039942107}
   m_SourcePrefab: {fileID: 100100000, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
 --- !u!1 &166076306 stripped
 GameObject:
@@ -1812,7 +1815,7 @@ Transform:
   m_GameObject: {fileID: 171695688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.182, y: 1.14535, z: 1.251}
+  m_LocalPosition: {x: 26.084, y: 1.14535, z: 1.251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2016,6 +2019,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: 564d0f3e340e46e46853071ed2cfebb6, type: 2}
   audioSource: {fileID: 0}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &197024748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4878,7 +4884,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 5.1
   Pan2D: 0
@@ -9589,6 +9595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0180c4aea1ae9d342b007f5b117a3c6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2636436733710389198, guid: 0180c4aea1ae9d342b007f5b117a3c6c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -9874,6 +9884,9 @@ MonoBehaviour:
   replic: {fileID: 0}
   audioSource: {fileID: 0}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!1001 &1296500847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10976,7 +10989,7 @@ Transform:
   m_GameObject: {fileID: 1451346113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.008, y: 0.9051, z: 1.231}
+  m_LocalPosition: {x: 26.91, y: 0.9051, z: 1.231}
   m_LocalScale: {x: 1, y: 1.3119731, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11413,7 +11426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1511217392
 Transform:
   m_ObjectHideFlags: 0
@@ -11423,7 +11436,7 @@ Transform:
   m_GameObject: {fileID: 1511217391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.916, y: 0, z: 0}
+  m_LocalPosition: {x: 6.697, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11444,6 +11457,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: 12745e6abf85d9945902aaf9574bba09, type: 2}
   audioSource: {fileID: 2064048082}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &1511217394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11629,7 +11645,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 5.1
   Pan2D: 0
@@ -12053,6 +12069,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: 165ca831c0e6ae646a0fb8f26b0d17e8, type: 2}
   audioSource: {fileID: 2055774152}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &1656022409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12376,11 +12395,11 @@ GameObject:
   - component: {fileID: 1716942967}
   m_Layer: 0
   m_Name: ReplicTrigger (4)
-  m_TagString: Untagged
+  m_TagString: RedLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1716942966
 Transform:
   m_ObjectHideFlags: 0
@@ -12411,6 +12430,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: e55f1215a884c314e9c7dda335119c0e, type: 2}
   audioSource: {fileID: 596320600}
   delay: 0
+  cameraShake: {fileID: 2039942107}
+  duration: 2
+  magnitude: 0.05
 --- !u!65 &1716942968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12733,7 +12755,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 5.1
   Pan2D: 0
@@ -13349,8 +13371,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplicTrigger
   replic: {fileID: 11400000, guid: e138b4055a182da4985cf9091493be6e, type: 2}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 2064048082}
   delay: 41
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &1841908075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13457,6 +13482,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: cb5051ed06b78af4d80a8c82f104dc53, type: 2}
   audioSource: {fileID: 1770355440}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &1869432622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13526,6 +13554,9 @@ MonoBehaviour:
   replic: {fileID: 11400000, guid: 0e39fdb077dfcbd4db9e4d9131a47a4b, type: 2}
   audioSource: {fileID: 1540056268}
   delay: 0
+  cameraShake: {fileID: 0}
+  duration: 2
+  magnitude: 0.15
 --- !u!65 &1872412984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14148,6 +14179,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2860316782274942713, guid: 34c70249399a73e4fb91badcafec6a38, type: 3}
   m_PrefabInstance: {fileID: 1296500847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2039942105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3803932619183758564, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+  m_PrefabInstance: {fileID: 165812352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2039942106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4191368725475244924, guid: e497aa74a0933cb4a99efbc882174d64, type: 3}
+  m_PrefabInstance: {fileID: 165812352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2039942107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039942105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702d56a7fa114144faf3b036cee178bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  cameraTransform: {fileID: 2039942106}
 --- !u!4 &2043414420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3976145018371708978, guid: 26b6666f8b23dfc40a96ecf50e79c673, type: 3}
@@ -14292,7 +14346,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 5.1
   Pan2D: 0
@@ -14438,7 +14492,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 5.1
   Pan2D: 0
@@ -15116,13 +15170,13 @@ GameObject:
   - component: {fileID: 6065518509282207890}
   - component: {fileID: 3470049379188351156}
   - component: {fileID: 547557609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Speaker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &3251961986387325182
 MeshRenderer:
   m_ObjectHideFlags: 0

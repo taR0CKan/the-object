@@ -34,7 +34,7 @@ public class MainTaskProcessing : MonoBehaviour
         {
             outputText.color = Color.red;
             outputText.text = $"X";
-            //InputWrong?.Invoke();
+            InputWrong?.Invoke();
         }
     }
 }
