@@ -32,10 +32,7 @@ public class InteractiveButton : Interactive
     {
         if (isCorrectItem(inventory.GetActiveItem()))
         {
-            foreach (InteractiveObject activatedObject in activatedObjects)
-            {
-                activatedObject.OnInteract();
-            }
+            interactEventInvoke();
             if (replic != null)
             {
                 ReplicSystemManager.Instance.Play(replic, audioSource);

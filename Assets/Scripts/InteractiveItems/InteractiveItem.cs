@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractiveItem : Interactive
+public class InteractiveItem : InteractiveObject
 {
     [SerializeField] public ItemScriptable itemData;
     private P_Inventory inventory;
@@ -25,6 +25,11 @@ public class InteractiveItem : Interactive
     public void SetInteractable()
     {
         isInteractable = true;
+    }
+
+    public override void OnInteract()
+    {
+        InteractItem();
     }
 
 }

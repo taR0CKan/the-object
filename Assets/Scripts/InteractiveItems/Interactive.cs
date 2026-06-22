@@ -8,5 +8,9 @@ public abstract class Interactive : MonoBehaviour
     {
         InteractEvent?.Invoke();
     }
+    protected void interactEventInvoke()
+    { 
+        InteractEvent?.Invoke(); 
+    }
 
 }
