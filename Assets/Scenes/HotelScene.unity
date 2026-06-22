@@ -646,7 +646,7 @@ MonoBehaviour:
   inputTimeout: 60
   visitorPrefab: {fileID: 5699499692115283533, guid: 7d61817f993b3a34684f25a756b4623a, type: 3}
   deskCardPoint: {fileID: 1559291940}
-  spawnDelay: 10
+  spawnDelay: 3
   visitorNames:
   - Alexander Hamilton
   - Beetle Juice
@@ -11099,7 +11099,7 @@ Transform:
   m_GameObject: {fileID: 729604381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5452394, y: 0.21, z: -4.49}
+  m_LocalPosition: {x: 1.58, y: 0.21, z: -4.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20034,7 +20034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1376574095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27025,7 +27025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1885877337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28706,7 +28706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2018796204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30699,7 +30699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2127768434
 RectTransform:
   m_ObjectHideFlags: 0

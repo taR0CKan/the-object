@@ -32,7 +32,7 @@ public class AnomalyUI : MonoBehaviour
 
     private void UpdateStability(float value)
     {
-        stabilityText.text = $"Текущая стабильность локации: {value:0}";
+        stabilityText.text = $"Стабильность локации: {value:0}";
     }
 
     private void UpdateTip(AnomalyBase anomaly)

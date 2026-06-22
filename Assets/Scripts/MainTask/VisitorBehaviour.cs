@@ -101,6 +101,7 @@ public class VisitorBehaviour : MonoBehaviour
 
     private IEnumerator MoveToPointCoroutine(Transform target, Action onReached) // Смена точки в фазе ожидания двери
     {
+        anim.enabled = true;
         RotateToTarget(target);
         while (Vector3.Distance(transform.position, target.position) > reachDistance)
         {
@@ -180,6 +181,7 @@ public class VisitorBehaviour : MonoBehaviour
     private void RotateToTarget(Transform nextTarget)
     {   
         Vector3 direction = nextTarget.position - transform.position;
+        direction.y = 0f;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.DORotateQuaternion(targetRotation, 0.5f);
     }

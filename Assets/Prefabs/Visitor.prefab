@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015bea237804c09408ce95a0dec8ed48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  visitorSpeed: 3
+  visitorSpeed: 2
   reachDistance: 0.1
   visitorCardPrefab: {fileID: 5483746792207202688, guid: 184d03d037f9ed64d862c68c7947dfd6, type: 3}
   handPoint: {fileID: 4090763522692551477}

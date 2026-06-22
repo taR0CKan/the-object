@@ -25,7 +25,11 @@ public static class GameEvents
 
     public static void AffectStability(int amount, bool affectType)
     {
-
+        if (affectType)
+        {
+            OnStabilityChanged?.Invoke(50 + amount);
+        }
+        else { OnStabilityChanged?.Invoke(50 - amount); }
     }
    
 
