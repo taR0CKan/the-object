@@ -5552,7 +5552,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2729763238275032100, guid: 34c70249399a73e4fb91badcafec6a38, type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2729763238275032100, guid: 34c70249399a73e4fb91badcafec6a38, type: 3}
       propertyPath: openAngle
